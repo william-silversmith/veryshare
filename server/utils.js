@@ -8,4 +8,26 @@
 			}
 		});
 	};
+
+	module.exports.load = function (filepath) {
+		try {
+			var data = fs.readFileSync(filepath, 'utf8');
+
+			console.log(data);
+
+			if (data) {
+				data = JSON.parse(data);
+			}
+			else {
+				data = {};
+			}
+
+			console.log('Loaded saved state.');
+			return data;
+		} 
+		catch (e) {
+			console.log('Unable to load saved state:\n\n' + e.message);
+			throw e;
+		}
+	};
 })();

@@ -12,7 +12,15 @@ var path = require('path');
 var app = express();
 var utils = require('./server/utils.js');
 
-var STATE = {};
+var STATE = {
+	visits: 0,
+	shares: 0,
+};
+
+try {
+	STATE = utils.load(process.env.SAVEFILE);
+}
+catch (e) {}
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -42,7 +50,8 @@ http.createServer(app).listen(app.get('port'), function(){
 
 setInterval(function () {
 	utils.save(process.env.SAVEFILE, STATE);
-}, 30000);
+	console.log("Saved state.");
+}, 1000);
 
 
 
