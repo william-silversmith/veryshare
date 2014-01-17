@@ -51,7 +51,7 @@ http.createServer(app).listen(app.get('port'), function(){
 setInterval(function () {
 	utils.save(process.env.SAVEFILE, STATE);
 	console.log("Saved state.");
-}, 1000);
+}, 600000);
 
 
 
