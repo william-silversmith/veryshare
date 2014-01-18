@@ -56,8 +56,9 @@
 	}
 
 	function shareButtonConfiguration () {
-		$('#share').alwaysCenterIn(document, {
-			top: -50
+		$('#share').alwaysCenterIn(window, {
+			top: -50,
+			left: -15
 		});
 		
 		setTimeout(function () { 

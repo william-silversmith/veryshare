@@ -37,12 +37,13 @@ body {
 	opacity: .9;
 	position: relative;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
     line-height: 300px;
     overflow: hidden;
  	cursor: pointer;
     z-index: 2;
+
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #share:hover {
@@ -53,7 +54,7 @@ body {
 	opacity: 1;
 }
 
-
+#youare,
 #main {
 	font-size:3.5em;
 	color: #f2e6c2;
@@ -61,4 +62,11 @@ body {
 	letter-spacing: .5px;
 	font-family: 'Oleo Script', cursive, sans-serif;
 	-webkit-font-smoothing: antialiased;
+}
+
+#youare {
+	margin-top: 20px;
+	font-size: 2.5em;
+	color: #302D21;
+	text-align: center;
 }

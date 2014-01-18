@@ -3,8 +3,8 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
+exports.index = function (req, res) {
   res.render('index', { 
-  	title: 'Very Share!'
+  	you_are: 1290215,
   });
 };
