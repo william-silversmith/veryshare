@@ -11,11 +11,17 @@
 	});
 
 	function configureAudio () {
-		for (var i = 0; i < 5; i++) {
-			var random = random_integer(NUMCLIPS) + 1;
-			random = random.toFixed(0);
 
-			var clip = new Audio("/audio/veryshare-" + random + ".wav");
+		var choices = range(1, NUMCLIPS);
+
+		for (var i = 0; i < 5; i++) {
+			var random_index = random_integer(choices.length);
+			var clip_id = choices[random_index] + 1;
+			choices.splice(random_index, 1);
+
+			clip_id = clip_id.toFixed(0);
+
+			var clip = new Audio("/audio/veryshare-" + clip_id + ".wav");
 			clip.preload = true;
 
 			clip.addEventListener('canplay', (function (bound_clip) {
@@ -81,4 +87,18 @@
 	function random_integer (max) {
 		return Math.round(Math.random() * 10000) % max;
 	}
+
+	function range (from, to, incr) {
+		var rng = [];
+
+		incr = incr || 1;
+
+		for (var i = from; i <= to; i += incr) {
+			rng.push(i);
+		}
+
+		return rng;
+	}
+
+
 })(jQuery);
