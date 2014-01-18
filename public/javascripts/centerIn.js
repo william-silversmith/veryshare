@@ -72,8 +72,13 @@
 
 		selector.centerIn.apply(selector, args);
 
-		$(window).on('resize.centerIn', function () {
+		var centeringfn = function () {
 			selector.centerIn.apply(selector, args);
+		};
+
+		$(window).on('resize.centerIn', centeringfn);
+		$(window).on('focus.centerIn', function () {
+			setTimeout(centeringfn, 500);
 		});
 	 };
 

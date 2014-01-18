@@ -22,7 +22,9 @@ var STATE = {
 try {
 	STATE = utils.load(SAVEFILE);
 }
-catch (e) {}
+catch (e) {
+	console.log(e.message);
+}
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -51,8 +53,13 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 setInterval(function () {
-	utils.save(SAVEFILE, STATE);
-	console.log("Saved state.");
+	try {
+		utils.save(SAVEFILE, STATE);
+		console.log("Saved state.");
+	}
+	catch (e) {
+		console.log(e.message);
+	}
 }, 600000);
 
 

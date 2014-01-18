@@ -49,7 +49,7 @@
 
 		setInterval(function() {
 			shakaroo($('#share'));
-		}, Math.round(Math.random() * (7000) + 5000));
+		}, Math.round(Math.random() * (5000) + 4500));
 
 		$('#share').mouseenter(function(){
 			$(this).fadeTo('fast', .5);
