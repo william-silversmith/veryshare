@@ -1,0 +1,8 @@
+export PORT=80
+
+function startveryshare {
+    sudo su;
+    cd /home/ubuntu/veryshare;
+    killall screen;
+    screen -d -m -L -S 'veryshare' nodejs app;
+}

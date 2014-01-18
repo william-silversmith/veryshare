@@ -41,9 +41,16 @@ body {
     margin-right: auto;
     line-height: 300px;
     overflow: hidden;
-    /*box-shadow: inset 5px 5px 0px rgba(50, 0, 0, 0.75);*/
  	cursor: pointer;
     z-index: 2;
+}
+
+#share:hover {
+	opacity: 0.95;
+}
+
+#share:active {
+	opacity: 1;
 }
 
 

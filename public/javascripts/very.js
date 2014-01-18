@@ -1,9 +1,13 @@
 ;(function ($, undefined) {
+	"use strict"; 
 
 	var _audioclips = [];
 	var next_clip = 0;
 
 	var NUMCLIPS = 8;
+
+	var _share_clicked_timer = null;
+	var _original_text = $('#main').text();
 
 	$(document).ready(function() {
 		shareButtonConfiguration();
@@ -32,6 +36,13 @@
 		}
 
 		$('#share').click(function () {
+			if (_share_clicked_timer) {
+				_share_clicked_timer = clearInterval(_share_clicked_timer);
+				clickMeBlinkDisplay({ 
+					initial_delay: 5000
+				});
+			}
+
 			if (_audioclips.length === 0) {
 				return;
 			}
@@ -46,7 +57,7 @@
 
 	function shareButtonConfiguration () {
 		$('#share').alwaysCenterIn(document, {
-			top: -50,
+			top: -50
 		});
 		
 		setTimeout(function () { 
@@ -57,17 +68,38 @@
 			shakaroo($('#share'));
 		}, Math.round(Math.random() * (5000) + 4500));
 
-		$('#share').mouseenter(function(){
-			$(this).fadeTo('fast', .5);
+		clickMeBlinkDisplay({ 
+			initial_delay: 3000
 		});
+	}
 
-		$('#share').mouseleave(function(){
-			$(this).fadeTo('fast', 1);
-		});
+	/* clickMeBlinkDisplay
+	 *
+	 * Switches the text of the button to "Click Me!"
+	 * or some such briefly.
+	 *
+	 * Optional:
+	 *   initial_delay: msec delay before executing the first switch
+	 *   repeat_delay: 
+	 *
+	 * Returns:
+	 */
+	function clickMeBlinkDisplay (args) {
+		args = args || {};
+		var initial_delay = args.initial_delay || 0;
+		var repeat_delay = args.releat_delay || 7000;
 
-		$('#share').click(function(){
-			$(this).fadeOut('fast');
-		});
+		var switcher = function () {
+			$('#main').text('Click Me!');
+			setTimeout(function () {
+				$('#main').text(_original_text);
+			}, 400);
+		};
+
+		setTimeout(function () {
+			switcher();
+			_share_clicked_timer = setInterval(switcher, repeat_delay);
+		}, initial_delay);
 	}
 
 	function shakaroo (element) {
