@@ -15,8 +15,8 @@
 		var choices = range(1, NUMCLIPS);
 
 		for (var i = 0; i < 5; i++) {
-			var random_index = random_integer(choices.length);
-			var clip_id = choices[random_index] + 1;
+			var random_index = random_integer(choices.length - 1);
+			var clip_id = choices[random_index];
 			choices.splice(random_index, 1);
 
 			clip_id = clip_id.toFixed(0);
@@ -24,11 +24,11 @@
 			var clip = new Audio("/audio/veryshare-" + clip_id + ".wav");
 			clip.preload = true;
 
-			clip.addEventListener('canplay', (function (bound_clip) {
+			$(clip).one('canplaythrough', (function (bound_clip) {
 				return function () {
 					_audioclips.push(bound_clip);
 				};
-			})(clip));
+			}(clip)));
 		}
 
 		$('#share').click(function () {
@@ -85,7 +85,7 @@
 	}
 
 	function random_integer (max) {
-		return Math.round(Math.random() * 10000) % max;
+		return Math.round(Math.random() * max);
 	}
 
 	function range (from, to, incr) {
