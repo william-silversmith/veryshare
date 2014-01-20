@@ -62,14 +62,14 @@ body {
 }
 
 #social {
-
+	position: absolute;
+	bottom: 10%;
 }
 
 #youare,
 #main {
 	font-size:3.5em;
 	color: #f2e6c2;
-	/*text-shadow: 0px -2px 0px  rgba(50, 0, 0, 0.75);*/
 	letter-spacing: .5px;
 	font-family: 'Oleo Script', cursive, sans-serif;
 	-webkit-font-smoothing: antialiased;

@@ -56,12 +56,18 @@
 	}
 
 	function shareButtonConfiguration () {
+		buttonSize();
+		$(window).on('resize', buttonSize);
+
 		$('#share').alwaysCenterIn(window, {
 			top: -50,
 			left: -15
 		});
 
-		$('#main').alwaysCenterIn('#share');
+		setTimeout(function () {
+			$('#main').alwaysCenterIn('#share');
+			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
+		}, 300);
 		
 		setTimeout(function () { 
 			shakaroo($('#share')); 
@@ -74,6 +80,22 @@
 		clickMeBlinkDisplay({ 
 			initial_delay: 3000
 		});
+	}
+
+	function buttonSize() {
+		var min_size = 300;
+
+		var minside = Math.min($(this).innerHeight(), $(this).innerWidth());
+
+		var diameter = Math.max(minside * 0.5, min_size);
+
+		$('#share').css('width', diameter).css('height', diameter);
+
+		var fontsize = 3.5;
+
+		fontsize *= diameter / min_size;
+
+		$('#main').css('font-size', fontsize + "em");
 	}
 
 	/* clickMeBlinkDisplay
@@ -111,10 +133,12 @@
 		var direction = bool 
 			? 'up' 
 			: 'left';
-			
+		
+		var diameter = $('#share').width();
+		
 		$(element).effect('shake', {
 			times: 3, 
-			distance: 3,
+			distance: diameter * .025,
 			direction: direction,
 		}, 25);
 	}
@@ -134,6 +158,5 @@
 
 		return rng;
 	}
-
 
 })(jQuery);
