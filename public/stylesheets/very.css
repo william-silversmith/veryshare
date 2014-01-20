@@ -49,12 +49,31 @@ body {
  	cursor: pointer;
     z-index: 2;
 
+    box-shadow: 0 0 10px black;
+
     -webkit-user-select: none;
     user-select: none;
 }
 
 #share:hover {
 	opacity: 0.95;
+
+	box-shadow: 0 0 10px black;
+
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+
+	-webkit-animation-name: pulsate;
+	animation-name: pulsate;
+
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+
+	-webkit-animation-duration: 1.5s;
+	animation-duration: 1.5s;
+
+	-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 #share:active {
@@ -90,3 +109,30 @@ body {
 	color: #302D21;
 	text-align: center;
 }
+
+/* Animations */
+
+@-webkit-keyframes pulsate {
+	0% {
+		box-shadow: 0 0 10px black;
+	}
+	50% {
+		box-shadow: 0 0 100px black;
+	}
+	100% {
+		box-shadow: 0 0 10px black;
+	}
+}
+@keyframes pulsate {
+	0% {
+		box-shadow: 0 0 10px black;
+	}
+	50% {
+		box-shadow: 0 0 100px black;
+	}
+	100% {
+		box-shadow: 0 0 10px black;
+	}
+}
+
+

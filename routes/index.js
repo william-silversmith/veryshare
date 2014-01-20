@@ -21,7 +21,7 @@ setInterval(function () {
 	catch (e) {
 		console.log(e.message);
 	}
-}, 2000);
+}, 60000);
 
 
 /*

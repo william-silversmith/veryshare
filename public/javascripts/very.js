@@ -65,7 +65,7 @@
 			});
 
 			// Too dangerous for prototype phase
-			
+
 			// var win = window.open(url, '_blank');
 			// win.focus();
 
@@ -115,7 +115,9 @@
 		}, 500);
 
 		setInterval(function() {
-			shakaroo($('#share'));
+			if (!($('#share').is(':hover'))) {
+				shakaroo($('#share'));
+			}
 		}, Math.round(Math.random() * (5000) + 4500));
 
 		clickMeBlinkDisplay({ 
