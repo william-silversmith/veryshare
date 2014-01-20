@@ -26,7 +26,7 @@
 			return data;
 		} 
 		catch (e) {
-			console.log('Unable to load saved state:\n\n' + e.message);
+			console.log('Unable to load saved state:\n' + e.message);
 			throw e;
 		}
 	};
