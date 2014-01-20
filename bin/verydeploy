@@ -1,0 +1,9 @@
+#!/bin/bash
+
+COPY=`ls $VERYPATH | grep -v node_modules`
+
+echo $COPY
+
+cd $VERYPATH
+#scp -r $COPY veryshare1:
+
