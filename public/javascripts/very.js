@@ -198,11 +198,11 @@
 		
 		var diameter = $('#share').width();
 		
-		// $(element).effect('shake', {
-		// 	times: 3, 
-		// 	distance: diameter * .025,
-		// 	direction: direction,
-		// }, 25);
+		$(element).effect('shake', {
+			times: 3, 
+			distance: diameter * .025,
+			direction: direction,
+		}, 25);
 	}
 
 	function random_integer (max) {
