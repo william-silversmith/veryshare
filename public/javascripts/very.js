@@ -105,10 +105,19 @@
 			left: -25
 		});
 
+		/* This complicated timing is necessary to ensure
+		   that the button firstly: correctly centered on page load,
+		   centered on page resize, and that the shake doesn't
+		   perturb it too much after returning from another tab. */
 		setTimeout(function () {
 			$('#main').alwaysCenterIn('#share');
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
 		}, 300);
+
+		setInterval(function () {
+			$('#main').centerIn('#share');
+			$('#social').centerIn('#share', { direction: 'horizontal' });
+		}, 4000);
 		
 		setTimeout(function () { 
 			shakaroo($('#share')); 
