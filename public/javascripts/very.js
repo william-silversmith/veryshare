@@ -60,6 +60,8 @@
 			top: -50,
 			left: -15
 		});
+
+		$('#main').alwaysCenterIn('#share');
 		
 		setTimeout(function () { 
 			shakaroo($('#share')); 

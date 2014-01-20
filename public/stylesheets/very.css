@@ -22,12 +22,20 @@ body {
 	color:#434343;
 	background-color: #f2e6c2;
 	position:relative;
+	font-family: 'Oleo Script', cursive, sans-serif;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
+#container {
+	width: 500px;
+	height: 500px;
+}
+
 #share {
-	height: 300px;
-	width: 300px;
+	height: 350px;
+	width: 350px;
+	max-height: 500px;
+	max-width: 500px;
 	border-style:solid;
 	border-color: #bf1600;
 	border-width:25px;
@@ -37,7 +45,6 @@ body {
 	opacity: .9;
 	position: relative;
     text-align: center;
-    line-height: 300px;
     overflow: hidden;
  	cursor: pointer;
     z-index: 2;
@@ -52,6 +59,10 @@ body {
 
 #share:active {
 	opacity: 1;
+}
+
+#social {
+
 }
 
 #youare,
