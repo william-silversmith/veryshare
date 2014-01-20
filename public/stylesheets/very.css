@@ -57,9 +57,10 @@ body {
 
 #share:hover {
 	opacity: 0.95;
-
 	box-shadow: 0 0 10px black;
+}
 
+#share.pulsate:hover {
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s;
 

@@ -105,6 +105,10 @@
 			left: -25
 		});
 
+		if (!$.browser.mobile) {
+			$('#share').addClass('pulsate');
+		}
+
 		/* This complicated timing is necessary to ensure
 		   that the button firstly: correctly centered on page load,
 		   centered on page resize, and that the shake doesn't
