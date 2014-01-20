@@ -4,9 +4,26 @@
   <meta charset="utf-8">
   <title>Very Share</title>
 
-  <link rel="stylesheet" href="/stylesheets/very.css">
-  <link href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+  <meta name="description" content="<%= description %>" />
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" value="summary">
+  <meta name="twitter:url" content="http://<%= host %>">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Very Share" />
+  <meta property="og:site_name" content="Very Share"/>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://<%= host %>/" />
+  <meta property="og:image" content="http://<%= host %>/image.jpg" />
+  <meta property="og:description" content="<%= description %>" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/stylesheets/very.css" async />
+  <link href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css' async />
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" async /> 
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript" defer></script>
@@ -19,9 +36,13 @@
   <div id="share">
     <span id="main">VeryShare</span>
     <div id ="social">
-      <img class="img"src="images/soShare.png" width="55" height="52" alt="Facebook">
+      <img src="images/facebook.png" width="55" height="52" alt="Facebook" />
     </div>
   </div>
-</body>
 
+  <script>
+    var you_are = <%= you_are %>;
+    var HOST = "<%= host %>";
+  </script>
+</body>
 </html>
