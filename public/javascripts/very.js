@@ -41,7 +41,7 @@
 	function configureAudio () {
 		var choices = range(1, NUMCLIPS);
 
-		for (var i = 0; i < 5; i++) {
+		for (var i = 0; i < 7; i++) {
 			var random_index = random_integer(choices.length - 1);
 			var clip_id = choices[random_index];
 			choices.splice(random_index, 1);
@@ -252,11 +252,11 @@
 		
 		var diameter = $('#share').width();
 		
-		// $(element).effect('shake', {
-		// 	times: 3, 
-		// 	distance: diameter * .025,
-		// 	direction: direction,
-		// }, 25);
+		$(element).effect('shake', {
+			times: 3, 
+			distance: diameter * .025,
+			direction: direction,
+		}, 25);
 	}
 
 	function random_integer (max) {
