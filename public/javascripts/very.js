@@ -23,7 +23,14 @@
 	var _social_networks = [
 		{ name: 'Facebook', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "facebook.png" },
 		{ name: 'Twitter', url: 'http://twitter.com/intent/tweet?source=sharethiscom&text=#{DESCRIPTION}&url=#{VERYSHARE}', img: "twitter.png" },
-		{ name: 'Google Plus', url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "gplus.png" },
+		
+		// Need to think about Tumblr and Reddit
+		{ name: 'Tumblr', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "tumblr.png" },
+		{ name: 'Reddit', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "reddit.png" },
+		
+		{ name: 'Pinterest', url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
+		{ name: 'Google Plus', url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "googleplus.png" },
+		{ name: 'Email', url: 'mailto:my_friends@example.com?subject=#{TITLE}&body=#{DESCRIPTION}', img: "email.png" },
 	];
 
 	$(document).ready(function() {
@@ -58,7 +65,7 @@
 			var socialnetwork = _social_networks[_social_index];
 			_social_index = (_social_index + 1) % _social_networks.length;
 
-			var url = socialnetwork.url.format({
+			var url = socialnetwork.url.format_url({
 				VERYSHARE: HOST,
 				TITLE: "Wow!!! So share.",
 				DESCRIPTION: "Share with your friends! You'll make so many."
@@ -76,14 +83,24 @@
   				.attr('title', next_network.name)
   				.attr('alt', next_network.name);
 		});
+
+		$('#share').mousedown(function () {
+			$(this).removeClass('reverse').addClass('green');
+		});
+
+		$('#share').mouseup(function () {
+			setTimeout(function () {
+				$('#share').removeClass('green reverse');
+			}, 750);
+		});
 	}
 
 	function playStupidSound () {
 		if (_share_clicked_timer) {
 			_share_clicked_timer = clearInterval(_share_clicked_timer);
-			clickMeBlinkDisplay({ 
-				initial_delay: 5000
-			});
+			// clickMeBlinkDisplay({ 
+			// 	initial_delay: 5000
+			// });
 		}
 
 		if (_audioclips.length === 0) {
@@ -100,10 +117,19 @@
 	function shareButtonConfiguration () {
 		buttonSize();
 		$(window).on('resize', buttonSize);
+		
+		$('#container').css('height', $(window).innerHeight());
+		$(window).on('resize', function () {
+			$('#container').css('height', $(window).innerHeight());
+		});
 
 		$('#share').alwaysCenterIn(window, {
 			top: -50,
-			left: -25
+			left: -25,
+		});
+
+		$('#next').alwaysCenterIn(window, {
+			direction: 'horizontal'
 		});
 
 		if (!$.browser.mobile) {
@@ -118,11 +144,6 @@
 			$('#main').alwaysCenterIn('#share');
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
 		}, 300);
-
-		setInterval(function () {
-			$('#main').centerIn('#share');
-			$('#social').centerIn('#share', { direction: 'horizontal' });
-		}, 4000);
 		
 		setTimeout(function () { 
 			shakaroo($('#share')); 
@@ -134,9 +155,9 @@
 			}
 		}, Math.round(Math.random() * (5000) + 4500));
 
-		clickMeBlinkDisplay({ 
-			initial_delay: 3000
-		});
+		// clickMeBlinkDisplay({ 
+		// 	initial_delay: 3000
+		// });
 	}
 
 	function buttonSize() {
@@ -182,9 +203,9 @@
 		var repeat_delay = args.releat_delay || 7000;
 
 		var switcher = function () {
-			var text = Math.round(Math.random())
-				? 'Click Me!'
-				: 'Touch Me!';
+			var text = $.browser.mobile
+				? 'Touch Me!'
+				: 'Click Me!';
 
 			$('#main').text(text);
 			setTimeout(function () {
@@ -229,6 +250,14 @@
 
 		return rng;
 	}
+
+	String.prototype.format_url = function (fmt) {
+		Object.keys(fmt).forEach(function (key) {
+			fmt[key] = encodeURIComponent(fmt[key]);
+		});
+
+		return this.format(fmt);
+	};
 
 	String.prototype.format = function (fmt) {
 		var str = this;

@@ -32,14 +32,17 @@
 </head>
 
 <body>
-  <div id="youare">You are <%= you_are %></div>
-  <div id="share">
-    <span id="main">VeryShare</span>
-    <div id ="social">
-      <img src="images/facebook.png" width="55" height="52" alt="Facebook" />
+  <div id="container">
+    <div id="youare">You are <%= you_are %></div>
+    <div id="share">
+      <span id="main">VeryShare</span>
+      <div id ="social">
+        <img src="images/facebook.png" width="55" height="52" alt="Facebook" />
+      </div>
     </div>
-  </div>
 
+    <div id="next">Next</div>
+  </div>
   <script>
     var you_are = <%= you_are %>;
     var HOST = "<%= host %>";
