@@ -141,16 +141,24 @@
 
 	function buttonSize() {
 		var min_size = $.browser.mobile
-			? 250
+			? 200
 			: 300;
 
 		var minside = Math.min($(this).innerHeight(), $(this).innerWidth());
-
 		var diameter = Math.max(minside * 0.5, min_size);
 
-		$('#share').css('width', diameter).css('height', diameter);
+		var bordersize = $.browser.mobile
+			? 18
+			: 25;
 
-		var fontsize = 3.5;
+		$('#share')
+			.css('width', diameter)
+			.css('height', diameter)
+			.css('border-width', bordersize + 'px');
+
+		var fontsize = $.browser.mobile
+			? 2.5
+			: 3.5;
 
 		fontsize *= diameter / min_size;
 
