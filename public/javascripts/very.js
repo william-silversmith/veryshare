@@ -67,7 +67,7 @@
 		.mousedown(function () {
 			$(this).removeClass('reverse').addClass('green');
 		})
-		.mouseup(function () {
+		.on('mouseup mouseleave', function () {
 			setTimeout(function () {
 				$('#share').removeClass('green reverse');
 			}, 750);
