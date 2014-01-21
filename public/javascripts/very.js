@@ -138,7 +138,7 @@
 		});
 
 		$('#share').alwaysCenterIn(window, {
-			top: -50,
+			top: -20,
 			left: -20,
 		});
 
@@ -156,7 +156,7 @@
 		   perturb it too much after returning from another tab. */
 		setTimeout(function () {
 			$('#share').centerIn(window, {
-				top: -50,
+				top: -20,
 				left: -20,
 			}).fadeIn(1000);
 

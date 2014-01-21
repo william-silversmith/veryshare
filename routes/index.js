@@ -28,13 +28,24 @@ setInterval(function () {
  * GET home page.
  */
 
+var wows = [
+	'wow',
+	'such',
+	'very',
+	'much',
+	'so',
+];
+
 exports.index = function (req, res) {
+	var wow = utils.random_choice(wows);
+
 	res.render('index', { 
 		host: "verysha.re",
 		description: "omgwtf",
-
+		wow: wow,
 		you_are: (STATE.visits + STATE.base).toFixed(0),
 	});
 
 	STATE.visits++;
 };
+

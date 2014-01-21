@@ -23,7 +23,8 @@ body {
 	color:#434343;
 	background-color: #f2e6c2;
 	position:relative;
-	font-family: 'Oleo Script', 'Comic Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -51,7 +52,7 @@ body {
  	cursor: pointer;
     z-index: 2;
 
-    box-shadow: 0 0 10px #AA6C28;
+    font-family: 'Oleo Script', 'Comic Sans', sans-serif;
 
     -webkit-user-select: none;
     user-select: none;
@@ -160,7 +161,6 @@ body {
 	font-size: 2.5em;
 	color: #f2e6c2;
 	letter-spacing: .5px;
-	font-family: 'Oleo Script', 'Comic Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -173,10 +173,17 @@ body {
 
 #youare {
 	position: relative;
-	top: 5%;
-	color: #302D21;
+	top: 7%;
+	
 	text-align: center;
+	font-size: 0.9em;
+	color: #bf1600;
+}
+
+#youare p {
+	margin-top: 1%;
 	font-size: 1.5em;
+	letter-spacing: 10px;
 }
 
 #container {
@@ -186,12 +193,19 @@ body {
 }
 
 #next {
+	color: #bf1600;
+
 	position: absolute;
-	bottom: 50px;
+	bottom: 13%;
 	text-align: center;
-	color: black;
 	cursor: pointer;
 
+	font-size: 0.9em;
+	letter-spacing: 2px;
+}
+
+#next:hover {
+	color: #fc1d00;
 }
 
 /* Animations */

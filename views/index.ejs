@@ -26,18 +26,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="/stylesheets/very.css" async />
-  <link href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css' async />
+  <link href='//fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css' async />
+  <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" async /> 
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript" defer></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript" defer></script>
   <script type="text/javascript" src="/javascripts/centerIn.js" defer></script>
   <script type="text/javascript" src="/javascripts/very.js" defer></script>
 </head>
 
 <body>
   <div id="container">
-    <div id="youare">You are <%= you_are %></div>
+    <div id="youare"><%= wow %><p><%= you_are %></p></div>
     <div id="share">
       <span id="main">VeryShare</span>
       <div id ="social">
@@ -45,7 +46,7 @@
       </div>
     </div>
 
-    <div id="next">Next</div>
+    <div id="next">next</div>
   </div>
   <script>
     var you_are = <%= you_are %>;
