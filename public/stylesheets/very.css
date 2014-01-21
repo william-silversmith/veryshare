@@ -22,7 +22,7 @@ body {
 	color:#434343;
 	background-color: #f2e6c2;
 	position:relative;
-	font-family: 'Oleo Script', cursive, sans-serif;
+	font-family: 'Oleo Script', 'Comic Sans', sans-serif;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -121,7 +121,7 @@ body {
 	font-size:3.5em;
 	color: #f2e6c2;
 	letter-spacing: .5px;
-	font-family: 'Oleo Script', cursive, sans-serif;
+	font-family: 'Oleo Script', 'Comic Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 

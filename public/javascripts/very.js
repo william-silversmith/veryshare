@@ -73,6 +73,7 @@
 
   			$('#social img')
   				.attr('src', '/images/' + next_network.img)
+  				.attr('title', next_network.name)
   				.attr('alt', next_network.name);
 		});
 	}
