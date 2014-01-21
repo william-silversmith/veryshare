@@ -14,7 +14,7 @@
 	var _audioclips = [];
 	var next_clip = 0;
 
-	var NUMCLIPS = 8;
+	var NUMCLIPS = 16;
 
 	var _share_clicked_timer = null;
 	var _original_text = $('#main').text();
@@ -61,27 +61,8 @@
 
 		$('#share').click(function () {
 			playStupidSound();
-
-			var socialnetwork = _social_networks[_social_index];
-			_social_index = (_social_index + 1) % _social_networks.length;
-
-			var url = socialnetwork.url.format_url({
-				VERYSHARE: HOST,
-				TITLE: "Wow!!! So share.",
-				DESCRIPTION: "Share with your friends! You'll make so many."
-			});
-
-			// Too dangerous for prototype phase
-
-			// var win = window.open(url, '_blank');
-			// win.focus();
-
-			var next_network = _social_networks[_social_index];
-
-  			$('#social img')
-  				.attr('src', '/images/' + next_network.img)
-  				.attr('title', next_network.name)
-  				.attr('alt', next_network.name);
+			shareOnSelectedNetwork();
+			advanceSelectedNetwork();
 		});
 
 		$('#share').mousedown(function () {
@@ -93,6 +74,31 @@
 				$('#share').removeClass('green reverse');
 			}, 750);
 		});
+	}
+
+	function shareOnSelectedNetwork () {
+		var socialnetwork = _social_networks[_social_index];
+		
+		var url = socialnetwork.url.format_url({
+			VERYSHARE: HOST,
+			TITLE: "Wow!!! So share.",
+			DESCRIPTION: "Share with your friends! You'll make so many."
+		});
+
+		// Too dangerous for prototype phase
+
+		// var win = window.open(url, '_blank');
+		// win.focus();
+	}
+
+	function advanceSelectedNetwork () {
+		_social_index = (_social_index + 1) % _social_networks.length;
+		var next_network = _social_networks[_social_index];
+
+		$('#social img')
+			.attr('src', '/images/' + next_network.img)
+			.attr('title', next_network.name)
+			.attr('alt', next_network.name);
 	}
 
 	function playStupidSound () {
@@ -115,8 +121,6 @@
 	}
 
 	function shareButtonConfiguration () {
-		buttonSize();
-		$(window).on('resize', buttonSize);
 		
 		$('#container').css('height', $(window).innerHeight());
 		$(window).on('resize', function () {
@@ -141,9 +145,17 @@
 		   centered on page resize, and that the shake doesn't
 		   perturb it too much after returning from another tab. */
 		setTimeout(function () {
+			buttonSize();
+			$('#share').centerIn(window, {
+				top: -50,
+				left: -25,
+			}).fadeIn(1000);
+			
 			$('#main').alwaysCenterIn('#share');
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
 		}, 300);
+		buttonSize();
+		$(window).on('resize', buttonSize);
 		
 		setTimeout(function () { 
 			shakaroo($('#share')); 

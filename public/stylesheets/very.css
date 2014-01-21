@@ -33,6 +33,7 @@ body {
 }
 
 #share {
+	display: none;
 	height: 350px;
 	width: 350px;
 	max-height: 500px;
@@ -178,7 +179,7 @@ body {
 	position: absolute;
 	bottom: 50px;
 	text-align: center;
-	color: brown;
+	color: black;
 	cursor: pointer;
 
 }
