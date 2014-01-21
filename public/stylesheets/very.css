@@ -40,7 +40,7 @@ body {
 	max-width: 500px;
 	border-style:solid;
 	border-color: #bf1600;
-	border-width:25px;
+	border-width: 18px;
 	border-radius: 100%;
 	background-color: #fc1d00;
 	color: white;
@@ -79,16 +79,12 @@ body {
 	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+#share.red,
 #share.green {
 	opacity: 1;
-	border-color: #1F7F27;
-	background-color: #17B83E;
 
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s;
-
-	-webkit-animation-name: activate;
-	animation-name: activate;
 
 	-webkit-animation-iteration-count: 1;
 	animation-iteration-count: 1;
@@ -100,54 +96,68 @@ body {
 	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-#share.green.pulsate {
-	-webkit-animation-name: pulsate, activate;
-	animation-name: pulsate, activate;
+#share.green {
+	border-color: #1F7F27;
+	background-color: #17B83E;
 
-	-webkit-animation-iteration-count: 1;
-	animation-iteration-count: 1;
-
-	-webkit-animation-duration: 0.2s;
-	animation-duration: 0.2s;
+	-webkit-animation-name: activate;
+	animation-name: activate;
 }
 
+#share.red {
+	-webkit-animation-name: deactivate;
+	animation-name: deactivate;
+}
 
 #social {
 	position: absolute;
 	bottom: 10%;
 	left: 41%;
 
+	width: 40px;
+	height: 40px;
+
 	border-radius: 100%;
 	background-color: #bf1600;
 }
 
-.green #social {
-	background-color: #1F7F27;
+#social img {
+	max-width: 100%;
+	max-height: 100%;
+}
 
+.green #social,
+.red #social {
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s;
-
-	-webkit-animation-name: social-activate;
-	animation-name: social-activate;
 
 	-webkit-animation-iteration-count: 1;
 	animation-iteration-count: 1;
 
-	-webkit-animation-duration: 0.1s;
-	animation-duration: 0.1s;
+	-webkit-animation-duration: 0.25s;
+	animation-duration: 0.25s;
 
 	-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.reverse {
-	-webkit-animation-direction: reverse;
-	animation-direction: reverse;
+.red #social {
+	background-color: #bf1600;
+
+	-webkit-animation-name: social-deactivate;
+	animation-name: social-deactivate;
+}
+
+.green #social {
+	background-color: #1F7F27;
+
+	-webkit-animation-name: social-activate;
+	animation-name: social-activate;
 }
 
 #youare,
 #main {
-	font-size:3.5em;
+	font-size: 2.5em;
 	color: #f2e6c2;
 	letter-spacing: .5px;
 	font-family: 'Oleo Script', 'Comic Sans', sans-serif;
@@ -163,10 +173,10 @@ body {
 
 #youare {
 	position: relative;
-	top: 20px;
-	font-size: 2.5em;
+	top: 5%;
 	color: #302D21;
 	text-align: center;
+	font-size: 1.5em;
 }
 
 #container {
@@ -244,6 +254,44 @@ body {
 	}
 	100% {
 		background-color: #1F7F27;
+	}
+}
+
+@-webkit-keyframes deactivate {
+	0% {
+		border-color: #1F7F27;
+		background-color: #17B83E;
+	}
+	100% {
+		border-color: #bf1600;
+		background-color: #fc1d00;
+	}
+}
+@keyframes deactivate {
+	0% {
+		border-color: #1F7F27;
+		background-color: #17B83E;
+	}
+	100% {
+		border-color: #bf1600;
+		background-color: #fc1d00;
+	}
+}
+
+@-webkit-keyframes social-deactivate {
+	0% {
+		background-color: #1F7F27;
+	}
+	100% {
+		background-color: #bf1600;
+	}
+}
+@keyframes social-deactivate {
+	0% {
+		background-color: #1F7F27;
+	}
+	100% {
+		background-color: #bf1600;
 	}
 }
 

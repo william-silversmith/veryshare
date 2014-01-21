@@ -39,7 +39,6 @@
 	});
 
 	function configureAudio () {
-
 		var choices = range(1, NUMCLIPS);
 
 		for (var i = 0; i < 5; i++) {
@@ -65,11 +64,24 @@
 			advanceSelectedNetwork();
 		})
 		.mousedown(function () {
-			$(this).removeClass('reverse').addClass('green');
-		})
-		.on('mouseup mouseleave', function () {
+			// Pulsate animation conflicts with activate/deactivate
+			// animations on the same element
+			if (!$.browser.mobile) {
+				$(this).removeClass('pulsate');
+				setTimeout(function () {
+					$('#share').addClass('pulsate');
+				}, 3000);
+			}
+
+			$(this).removeClass('red').addClass('green');
+		});
+
+		$(document).on('mouseup', function () {
 			setTimeout(function () {
-				$('#share').removeClass('green reverse');
+				$('#share').removeClass('green').addClass('red');
+				setTimeout(function () {
+					$('#share').removeClass('red');
+				}, 300);
 			}, 750);
 		});
 	}
@@ -85,8 +97,8 @@
 
 		// Too dangerous for prototype phase
 
-		var win = window.open(url, '_blank');
-		win.focus();
+		// var win = window.open(url, '_blank');
+		// win.focus();
 	}
 
 	function advanceSelectedNetwork () {
@@ -173,29 +185,29 @@
 	}
 
 	function buttonSize() {
-		var min_size = $.browser.mobile
-			? 200
-			: 300;
+		var share_min_size = 200;
 
-		var minside = Math.min($(this).innerHeight(), $(this).innerWidth());
-		var diameter = Math.max(minside * 0.5, min_size);
+		var window_min_side = Math.min($(this).innerHeight(), $(this).innerWidth());
+		var share_diameter = Math.max(window_min_side * 0.4, share_min_size);
 
-		var bordersize = $.browser.mobile
-			? 18
-			: 25;
+		var bordersize = Math.max(share_diameter * 0.08, 18);
 
 		$('#share')
-			.css('width', diameter)
-			.css('height', diameter)
+			.css('width', share_diameter)
+			.css('height', share_diameter)
 			.css('border-width', bordersize + 'px');
 
-		var fontsize = $.browser.mobile
-			? 2.5
-			: 3.5;
-
-		fontsize *= diameter / min_size;
+		var fontsize = 2.5;
+		fontsize *= share_diameter / share_min_size;
 
 		$('#main').css('font-size', fontsize + "em");
+
+		var social_min_size = 35;
+		var social_diameter = Math.max(share_diameter * 0.175, social_min_size);
+
+		$('#social')
+			.css('width', social_diameter)
+			.css('height', social_diameter);
 	}
 
 	/* clickMeBlinkDisplay
@@ -240,11 +252,11 @@
 		
 		var diameter = $('#share').width();
 		
-		$(element).effect('shake', {
-			times: 3, 
-			distance: diameter * .025,
-			direction: direction,
-		}, 25);
+		// $(element).effect('shake', {
+		// 	times: 3, 
+		// 	distance: diameter * .025,
+		// 	direction: direction,
+		// }, 25);
 	}
 
 	function random_integer (max) {
