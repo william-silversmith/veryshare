@@ -139,7 +139,7 @@
 
 		$('#share').alwaysCenterIn(window, {
 			top: -50,
-			left: -25,
+			left: -20,
 		});
 
 		$('#next').alwaysCenterIn(window, {
@@ -155,15 +155,15 @@
 		   centered on page resize, and that the shake doesn't
 		   perturb it too much after returning from another tab. */
 		setTimeout(function () {
-			buttonSize();
 			$('#share').centerIn(window, {
 				top: -50,
-				left: -25,
+				left: -20,
 			}).fadeIn(1000);
 
 			$('#main').alwaysCenterIn('#share');
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
 		}, 300);
+
 		buttonSize();
 		$(window).on('resize', buttonSize);
 		
@@ -187,7 +187,7 @@
 	function buttonSize() {
 		var share_min_size = 200;
 
-		var window_min_side = Math.min($(this).innerHeight(), $(this).innerWidth());
+		var window_min_side = Math.min($(window).innerHeight(), $(window).innerWidth());
 		var share_diameter = Math.max(window_min_side * 0.4, share_min_size);
 
 		var bordersize = Math.max(share_diameter * 0.08, 18);
