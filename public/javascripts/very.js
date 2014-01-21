@@ -63,13 +63,11 @@
 			playStupidSound();
 			shareOnSelectedNetwork();
 			advanceSelectedNetwork();
-		});
-
-		$('#share').mousedown(function () {
+		})
+		.mousedown(function () {
 			$(this).removeClass('reverse').addClass('green');
-		});
-
-		$('#share').mouseup(function () {
+		})
+		.mouseup(function () {
 			setTimeout(function () {
 				$('#share').removeClass('green reverse');
 			}, 750);
@@ -150,7 +148,7 @@
 				top: -50,
 				left: -25,
 			}).fadeIn(1000);
-			
+
 			$('#main').alwaysCenterIn('#share');
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
 		}, 300);
@@ -166,6 +164,8 @@
 				shakaroo($('#share'));
 			}
 		}, Math.round(Math.random() * (5000) + 4500));
+
+		$('#next').click(advanceSelectedNetwork);
 
 		// clickMeBlinkDisplay({ 
 		// 	initial_delay: 3000
