@@ -25,8 +25,8 @@
 		{ name: 'Twitter', url: 'http://twitter.com/intent/tweet?source=sharethiscom&text=#{DESCRIPTION}&url=#{VERYSHARE}', img: "twitter.png" },
 		
 		// Need to think about Tumblr and Reddit
-		{ name: 'Tumblr', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "tumblr.png" },
-		{ name: 'Reddit', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "reddit.png" },
+		{ name: 'Tumblr', url: 'http://www.tumblr.com/share?v=3&u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "tumblr.png" },
+		//{ name: 'Reddit', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "reddit.png" },
 		
 		{ name: 'Pinterest', url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
 		{ name: 'Google Plus', url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "googleplus.png" },
@@ -85,8 +85,8 @@
 
 		// Too dangerous for prototype phase
 
-		// var win = window.open(url, '_blank');
-		// win.focus();
+		var win = window.open(url, '_blank');
+		win.focus();
 	}
 
 	function advanceSelectedNetwork () {
