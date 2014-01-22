@@ -208,6 +208,22 @@ body {
 	color: #fc1d00;
 }
 
+a {
+	font-family: 'Roboto', sans-serif;
+	font-weight: lighter;
+	color: #bf1600;
+	font-size: .7em;
+	letter-spacing: 1px;
+	text-decoration: none;
+}
+
+#submit-vocals {
+	position: absolute;
+	top: 1%;
+	right: 1%;
+}
+
+
 /* Animations */
 
 @-webkit-keyframes pulsate {

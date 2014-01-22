@@ -36,16 +36,30 @@ var wows = [
 	'so',
 ];
 
+var HOST = 'veryshare.us';
+var DESCRIPTION = "omgwtf";	
+
 exports.index = function (req, res) {
 	var wow = utils.random_choice(wows);
 
 	res.render('index', { 
-		host: "verysha.re",
-		description: "omgwtf",
+		host: HOST,
+		description: DESCRIPTION,
 		wow: wow,
 		you_are: (STATE.visits + STATE.base).toFixed(0),
 	});
 
 	STATE.visits++;
 };
+
+exports.share_your_voice = function (req, res) {
+	res.render('share_your_voice', { 
+		host: HOST,
+		description: DESCRIPTION,
+	});
+};
+
+
+
+
 
