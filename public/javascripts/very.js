@@ -95,6 +95,9 @@
 						}
 					});
 			}, 1000);
+
+			$(this).preventDefault();
+			return false;
 		})
 		.mousedown(function () {
 			// Pulsate animation conflicts with activate/deactivate
