@@ -96,7 +96,7 @@
 					});
 			}, 1000);
 
-			$(this).preventDefault();
+			$(this).preventDefault(); // trying to stop mobile highlight
 			return false;
 		})
 		.mousedown(function () {
@@ -105,6 +105,10 @@
 			if (!$.browser.mobile) {
 				$(this).removeClass('pulsate');
 			}
+		})
+		.on("touchend", function() {
+			$(this).preventDefault(); // trying to stop mobile highlight
+   			return false;
 		});
 	}
 
