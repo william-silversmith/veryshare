@@ -58,31 +58,50 @@
 			}(clip)));
 		}
 
+		var powermodetimer = null;
+		var powermode = false;
+
 		$('#share').click(function () {
 			playStupidSound();
 			shareOnSelectedNetwork();
 			advanceSelectedNetwork();
+
+			if (powermodetimer) {
+				powermodetimer = clearTimeout(powermodetimer);
+			}
+
+			if (!powermode) {
+				$(this)
+					.removeClass('fadeToRed')
+					.addClass('green fadeToGreen')
+					.animationend(function (evt) {
+						$('#share')
+							.addClass('green')
+							.removeClass('fadeToGreen');
+					});
+				powermode = true;
+			}
+
+			powermodetimer = setTimeout(function () {
+				powermodetimer = null;
+				powermode = false;
+
+				$('#share')
+					.addClass('fadeToRed')
+					.animationend(function () {
+						$('#share').removeClass('green fadeToRed');
+						if (!$.browser.mobile) {
+							$('#share').addClass('pulsate');
+						}
+					});
+			}, 1000);
 		})
 		.mousedown(function () {
 			// Pulsate animation conflicts with activate/deactivate
 			// animations on the same element
 			if (!$.browser.mobile) {
 				$(this).removeClass('pulsate');
-				setTimeout(function () {
-					$('#share').addClass('pulsate');
-				}, 3000);
 			}
-
-			$(this).removeClass('red').addClass('green');
-		});
-
-		$(document).on('mouseup', function () {
-			setTimeout(function () {
-				$('#share').removeClass('green').addClass('red');
-				setTimeout(function () {
-					$('#share').removeClass('red');
-				}, 300);
-			}, 750);
 		});
 	}
 
@@ -292,4 +311,7 @@
 		return str;
 	};
 
+	$.fn.animationend = function (fn) {
+		$(this).one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', fn);
+	};
 })(jQuery);

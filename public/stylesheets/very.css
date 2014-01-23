@@ -97,15 +97,21 @@ body {
 	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+#share.red {
+	
+}
+
 #share.green {
 	border-color: #1F7F27;
 	background-color: #17B83E;
+}
 
+#share.fadeToGreen {
 	-webkit-animation-name: activate;
 	animation-name: activate;
 }
 
-#share.red {
+#share.fadeToRed {
 	-webkit-animation-name: deactivate;
 	animation-name: deactivate;
 }
@@ -127,8 +133,8 @@ body {
 	max-height: 100%;
 }
 
-.green #social,
-.red #social {
+.fadeToGreen #social,
+.fadeToRed #social {
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s;
 
@@ -142,16 +148,16 @@ body {
 	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.red #social {
-	background-color: #bf1600;
-
+.fadeToRed #social {
 	-webkit-animation-name: social-deactivate;
 	animation-name: social-deactivate;
 }
 
 .green #social {
 	background-color: #1F7F27;
+}
 
+.fadeToGreen #social {
 	-webkit-animation-name: social-activate;
 	animation-name: social-activate;
 }
