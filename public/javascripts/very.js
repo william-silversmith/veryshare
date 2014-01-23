@@ -177,9 +177,10 @@
 			$('#share').centerIn(window, {
 				top: -20,
 				left: -20,
-			}).fadeIn(1000);
+			}).fadeIn(1000, function () {
+				$('#main').alwaysCenterIn('#share');
+			});
 
-			$('#main').alwaysCenterIn('#share');
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
 		}, 300);
 
