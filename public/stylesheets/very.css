@@ -53,9 +53,6 @@ body {
     z-index: 2;
 
     font-family: 'Oleo Script', 'Comic Sans', sans-serif;
-
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 #share:hover {
@@ -97,15 +94,21 @@ body {
 	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+#share.red {
+	
+}
+
 #share.green {
 	border-color: #1F7F27;
 	background-color: #17B83E;
+}
 
+#share.fadeToGreen {
 	-webkit-animation-name: activate;
 	animation-name: activate;
 }
 
-#share.red {
+#share.fadeToRed {
 	-webkit-animation-name: deactivate;
 	animation-name: deactivate;
 }
@@ -122,13 +125,25 @@ body {
 	background-color: #bf1600;
 }
 
+.untouchable {
+	outline: none !important;
+	-webkit-user-modify: read-only !important;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+	-webkit-tap-highlight-color: transparent !important; /* For some Androids */
+	-webkit-touch-callout: none !important;
+	-webkit-user-select: none !important;
+	-khtml-user-select: none !important;
+	-moz-user-select: none !important;
+	-ms-user-select: none !important;
+	user-select: none !important;
+}
 #social img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
-.green #social,
-.red #social {
+.fadeToGreen #social,
+.fadeToRed #social {
 	-webkit-animation-delay: 0s;
 	animation-delay: 0s;
 
@@ -142,16 +157,16 @@ body {
 	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.red #social {
-	background-color: #bf1600;
-
+.fadeToRed #social {
 	-webkit-animation-name: social-deactivate;
 	animation-name: social-deactivate;
 }
 
 .green #social {
 	background-color: #1F7F27;
+}
 
+.fadeToGreen #social {
 	-webkit-animation-name: social-activate;
 	animation-name: social-activate;
 }
@@ -168,7 +183,7 @@ body {
 #main {
 	position: absolute;
 	top: 40.5%;
-	left: 12%;
+	left: 9%;
 }
 
 #youare {
