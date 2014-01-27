@@ -51,11 +51,17 @@
 			var clip = new Audio("/audio/veryshare-" + clip_id + ".wav");
 			clip.preload = true;
 
-			$(clip).one('canplaythrough', (function (bound_clip) {
-				return function () {
-					_audioclips.push(bound_clip);
-				};
-			}(clip)));
+			// Fix for apple not preloading
+			if ($.browser.iproduct) {
+				_audioclips.push(clip);
+			}
+			else {
+				$(clip).one('canplaythrough', (function (bound_clip) {
+					return function () {
+						_audioclips.push(bound_clip);
+					};
+				}(clip)));
+			}
 		}
 
 		var powermodetimer = null;
@@ -322,4 +328,8 @@
 	$.fn.animationend = function (fn) {
 		$(this).one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', fn);
 	};
+
+	$.browser = $.browser || {};
+	$.browser.iproduct = /ipad|iphone/i.test(navigator.userAgent);
+
 })(jQuery);
