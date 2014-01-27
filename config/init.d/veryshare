@@ -1,0 +1,45 @@
+#!/bin/sh                                                                                                                                     
+#                                                                                                                                             
+# Simple Redis init.d script conceived to work on Linux systems                                                                               
+# as it does use of the /proc filesystem.                                                                                                     
+
+export PORT=80
+export APPENV=PRODUCTION
+
+PIDFILE=/etc/run/veryshare.pid
+EXEC="screen -d -m -L -S veryshare nodejs /home/ubuntu/veryshare/app"
+
+case "$1" in
+    start)
+        if [ -f $PIDFILE ]
+        then
+                echo "$PIDFILE exists, process is already running or crashed"
+        else
+                echo "Starting VeryShare server..."
+                $EXEC $CONF
+        fi
+        ;;
+    stop)
+        if [ ! -f $PIDFILE ]
+        then
+                echo "$PIDFILE does not exist, process is not running"
+        else
+                PID=$(cat $PIDFILE)
+                echo "Stopping ..."
+                kill $PID
+                while [ -x /proc/${PID} ]
+                do
+                    echo "Waiting for VeryShare to shutdown ..."
+                    sleep 1
+                done
+                echo "VeryShare stopped"
+        fi
+        ;;
+    restart)
+	$0 stop;
+	$0 start;
+	;;
+    *)
+        echo "Please use start or stop as first argument"
+        ;;
+esac

@@ -1,14 +1,8 @@
-export PORT=3000
-export APPENV='PRODUCTION' # or 'DEVELOPMENT' if that's what you're into
+function service {
+    local name=$1
+    if [ "$1" = "redis" ]; then
+	name=redis_6385;
+    fi
 
-function startveryshare {
-	if [ "$APPENV" -eq "PRODUCTION"];
-		export PORT=80
-	fi
-
-    sudo su;
-    cd /home/ubuntu/veryshare;
-    killall screen;
-    screen -d -m -L -S 'veryshare' nodejs app;
-    exit;
+    sudo /etc/init.d/$name $2
 }
