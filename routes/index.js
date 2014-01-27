@@ -1,7 +1,12 @@
 
 var utils = require('../server/utils.js');
 var redis_module = require('redis');
-var redis = redis_module.createClient(6385, 'redis.veryshare.us');
+
+var REDIS_HOST = process.env.APPENV === 'PRODUCTION'
+	? 'redis.veryshare.us'
+	: 'localhost';
+
+var redis = redis_module.createClient(6385, REDIS_HOST);
 
 redis.on('error', function (error) {
 	console.log("Redis Error: " + error);
