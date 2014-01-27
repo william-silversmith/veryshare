@@ -1,12 +1,31 @@
 
 var utils = require('../server/utils.js');
+var redis_module = require('redis');
+var redis = redis_module.createClient(6385, 'redis.veryshare.us');
+
+redis.on('error', function (error) {
+	console.log("Redis Error: " + error);
+});
 
 var SAVEFILE = process.env.SAVEFILE || "state.json";
 
 var STATE = {
-	base: Math.round(Math.random() * 100000),
+	base: 0,
 	visits: 0,
 };
+
+redis.get('base', function (err, value) {
+	if (err) {
+		console.log(err);
+	}
+	else {
+		value = parseInt(value, 10);
+
+		if (STATE.base > 30000) {
+			STATE.base = value;
+		}
+	}
+});
 
 try {
 	STATE = utils.load(SAVEFILE);
@@ -39,13 +58,25 @@ var wows = [
 exports.index = function (req, res) {
 	var wow = utils.random_choice(wows);
 
-	res.render('index', { 
-		host: "verysha.re",
-		description: "omgwtf",
-		wow: wow,
-		you_are: (STATE.visits + STATE.base).toFixed(0),
+	redis.get('visits', function (err, visits) {
+		if (err) {
+			console.log(err);
+		}
+
+		if (visits > 4000000) {
+			visits = 0;
+		}
+
+		visits = parseInt(visits, 10);
+		res.render('index', { 
+			host: "veryshare.us",
+			description: "omgwtf",
+			wow: wow,
+			you_are: (visits + STATE.base).toFixed(0),
+		});
 	});
 
 	STATE.visits++;
+	redis.incr('visits');
 };
 
