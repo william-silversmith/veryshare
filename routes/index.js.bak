@@ -1,12 +1,7 @@
 
 var utils = require('../server/utils.js');
 var redis_module = require('redis');
-
-var REDIS_HOST = process.env.APPENV === 'PRODUCTION'
-	? 'redis.veryshare.us'
-	: 'localhost';
-
-var redis = redis_module.createClient(6385, REDIS_HOST);
+var redis = redis_module.createClient(6385, 'redis.veryshare.us');
 
 redis.on('error', function (error) {
 	console.log("Redis Error: " + error);
@@ -66,6 +61,13 @@ var DESCRIPTION = "omgwtf";
 exports.index = function (req, res) {
 	var wow = utils.random_choice(wows);
 
+<<<<<<< HEAD
+	res.render('index', { 
+		host: HOST,
+		description: DESCRIPTION,
+		wow: wow,
+		you_are: (STATE.visits + STATE.base).toFixed(0),
+=======
 	redis.get('visits', function (err, visits) {
 		if (err) {
 			console.log(err);
@@ -82,6 +84,7 @@ exports.index = function (req, res) {
 			wow: wow,
 			you_are: (visits + STATE.base).toFixed(0),
 		});
+>>>>>>> ca69f82c62b2f6cfd6aec898c6820e8e32406c10
 	});
 
 	STATE.visits++;

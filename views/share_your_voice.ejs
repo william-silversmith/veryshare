@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Share Voice | Very Share</title>
+
+  <link rel="shortcut icon" sizes="16x16" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" sizes="32x32" href="/images/favicon32x32.png" type="image/png">
+  <link rel="shortcut icon" sizes="64x64" href="/images/favicon64x64.png" type="image/png">
+
+  <meta name="description" content="<%= description %>" />
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" value="summary">
+  <meta name="twitter:url" content="http://<%= host %>">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Very Share" />
+  <meta property="og:site_name" content="Very Share"/>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://<%= host %>/" />
+  <meta property="og:image" content="http://<%= host %>/image.jpg" />
+  <meta property="og:description" content="<%= description %>" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/stylesheets/voice.css" async />
+  <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" async /> 
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript" defer></script>
+  <script type="text/javascript" src="/javascripts/centerIn.js" defer></script>
+  <script type="text/javascript" src="/javascripts/voice.js" defer></script>
+</head>
+
+<body>
+  <div id="mainContainer">
+      <h2 class="heart">&hearts;</h2>
+      <h2 id="top">Hello beautiful person.</h2>
+      <h1>We want you to share your voice with us!</h1>
+       
+      <p id="mission" class="centerIt">Submit a voice clip to <a href="mailto:love@<%= host %>?subject=Share%20Voice%20Submission">love@<%= host %></a> that expresses a spirit of earnestness,<br>optimism, and raw stupidity and we might just share it with the <span class="bold">world!</span></p>
+      <h3>Example Ideas</h3>
+
+      <p class="original">It's classy to be original, but, if you're looking for ideas here's a few suggestions:</p>
+
+      <ul class="centerIt">
+        <li>very share</li>
+        <li>such share</li>
+        <li>so share</li>
+        <li>such amaze</li>
+        <li>such wonder</li>
+        <li>such wow</li>
+        <li>wow</li>
+      </ul>
+
+      <p id="example" class="original">Anything a <span class="bold">Shiba Inu</span> might say (don't take this one literally)</p>
+
+      <h3>Submission Details</h3>
+
+      <p id="originalBottom">To be accepted your clip must at minimum fufill the following conditions, though we reserve our discretion for exceptional cases:</p>
+
+      <ul class="centerItSm">
+        <li>.wav file format</li>
+        <li>Length: < 2sec</li>
+        <li>File size: < 350kB</li>
+        <li>Limit two clip submissions per person</li>
+      </ul>
+
+      <p class="originalBottomJ">
+        Clips in lanugages other than English should be accompanied by a written representationin the same language as the clip, a standard English transliteration (if using a non-latin script)and an English translation. Basically, we need to check Google Translate.<br><br>Additionally, by submitting a clip, you assert that you have the rights to that clip and agree to grant an unlimited perpetual world-wide non-exclusive irrevocable royalty-free copyright license to us to use (or not use at all) the clip in conjunction with Very Share. You also grant us permission to edit the clip for length, volume, and clarity. Basically, this means you're freely sharing the clip with us so we can freely share it with other people and we want to edit the clips to be clear, trimmed, and have a decibel level that makes sense in context with other clips. Don't count on us to do your work for you though. ;-)
+      </p>
+  </div>
+  <script>
+    <% if (process.env.APPENV === 'PRODUCTION') { %>
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47300932-2', 'verysha.re');
+    ga('send', 'pageview');
+
+    <% } %>
+
+  </script>
+</body>
+</html>
