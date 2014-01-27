@@ -77,8 +77,8 @@ exports.index = function (req, res) {
 
 		visits = parseInt(visits, 10);
 		res.render('index', { 
-			host: "veryshare.us",
-			description: "omgwtf",
+			host: HOST,
+			description: DESCRIPTION,
 			wow: wow,
 			you_are: (visits + STATE.base).toFixed(0),
 		});
