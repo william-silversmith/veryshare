@@ -14,7 +14,7 @@
 	var _audioclips = [];
 	var next_clip = 0;
 
-	var NUMCLIPS = 15;
+	var NUMCLIPS = 16;
 
 	var _share_clicked_timer = null;
 	var _original_text = $('#main').text();
@@ -328,8 +328,11 @@
 	$.fn.animationend = function (fn) {
 		$(this).one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', fn);
 	};
+<<<<<<< HEAD
 
 	$.browser = $.browser || {};
 	$.browser.iproduct = /ipad|iphone/i.test(navigator.userAgent);
 
+=======
+>>>>>>> submitclips
 })(jQuery);
