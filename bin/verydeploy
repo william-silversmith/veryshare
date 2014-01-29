@@ -1,9 +1,14 @@
 #!/bin/bash
 
-COPY=`ls $VERYPATH | grep -v node_modules`
+cd $VERYPATH
+
+if [ "$1" = "all" ] 
+then
+	COPY=`find $VERYPATH | grep -v git | grep -v node_modules | grep -v DS_Store | grep -v -e '^\.$' | grep -v "^$VERYPATH$"`;
+else
+	COPY=`find $VERYPATH | grep -v git | grep -v node_modules | grep -v DS_Store | grep -v -e '^\.$' | grep -v "^$VERYPATH$" | grep -v wav`;
+fi
 
 echo $COPY
-
-cd $VERYPATH
-scp -r $COPY veryshare1:veryshare
+scp $COPY veryshare1:veryshare
 
