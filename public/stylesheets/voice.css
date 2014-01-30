@@ -35,7 +35,7 @@ header {
 
 header nav {
 	top: 15px;
-	position: relative;
+	position: fixed;
 	z-index: 5;
 }
 	

@@ -8,6 +8,10 @@
 		$('.page').each(function (index, element) {
 			$(element).find('.content').first().alwaysCenterIn(element);
 		});
+
+		$('nav').alwaysCenterIn(window, {
+			direction: 'horizontal'
+		});
 	});
 
 	function pagesize () {
