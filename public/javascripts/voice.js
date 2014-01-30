@@ -1,12 +1,18 @@
 (function ($, undefined) {
 
+	$(window).resize(pagesize);
 
 	$(document).ready(function () {
-		$('#mainContainer').first().slideme({
-			arrows: true,
-			speed: 5000,
-			transition: 'page'
+		pagesize();
+
+		$('.page').each(function (index, element) {
+			$(element).find('.content').first().alwaysCenterIn(element);
 		});
 	});
+
+	function pagesize () {
+		$('div.page').css('height', $(window).innerHeight());
+	}
+
 })(jQuery);
 

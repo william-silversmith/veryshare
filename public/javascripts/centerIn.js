@@ -24,7 +24,12 @@
 		var extraleft = options.left || 0;
 		var extratop = options.top || 0;
 
-		selector = $(selector).first();
+		if (selector) {
+			selector = $(selector).first();
+		}
+		else {
+			selector = elements.first().parent();
+		}
 
 		try {
 			if (!selector.css('position') || selector.css('position') === 'static') {
