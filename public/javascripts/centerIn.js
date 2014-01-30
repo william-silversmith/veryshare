@@ -42,13 +42,13 @@
 		};
 
 		var horizontal = function (element) {
-			var left = (selector.innerWidth() - element.innerWidth()) / 2;
+			var left = Math.round((selector.innerWidth() - element.outerWidth(false)) / 2);
 			left += extraleft;
 			element.css('left', left + "px");
 		};
 
 		var vertical = function (element) {
-			var top = (selector.innerHeight() - element.innerHeight()) / 2;
+			var top = Math.round((selector.innerHeight() - element.outerHeight(false)) / 2);
 			top += extratop;
 			element.css('top', top + "px");
 		};

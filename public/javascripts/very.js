@@ -163,10 +163,7 @@
 			$('#container').css('height', $(window).innerHeight());
 		});
 
-		$('#share').alwaysCenterIn(window, {
-			top: -20,
-			left: -20,
-		});
+		$('#share').alwaysCenterIn();
 
 		$('#next').alwaysCenterIn(window, {
 			direction: 'horizontal'
@@ -181,12 +178,11 @@
 		   centered on page resize, and that the shake doesn't
 		   perturb it too much after returning from another tab. */
 		setTimeout(function () {
-			$('#share').centerIn(window, {
-				top: -20,
-				left: -20,
-			}).fadeIn(1000, function () {
-				$('#main').alwaysCenterIn('#share');
-			});
+			$('#share')
+				.centerIn()
+				.fadeIn(1000, function () {
+					$('#main').alwaysCenterIn();
+				});
 
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
 		}, 300);
@@ -283,6 +279,9 @@
 			times: 3, 
 			distance: diameter * .025,
 			direction: direction,
+			complete: function () {
+				element.centerIn()
+			}
 		}, 25);
 	}
 
