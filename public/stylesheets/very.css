@@ -21,7 +21,7 @@ body {
 	height:100%;
 	letter-spacing:0;
 	color:#434343;
-	background-color: #f2e6c2;
+	background-color: #F5EED9;
 	position:relative;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
@@ -238,7 +238,6 @@ a {
 	right: 1%;
 }
 
-
 /* Animations */
 
 @-webkit-keyframes pulsate {
@@ -338,5 +337,34 @@ a {
 	100% {
 		background-color: #bf1600;
 	}
+}
+
+/* blot.css */
+
+.blot-in {
+	background-color: rgba(0, 0, 0, 0);
+	border: 1px solid black; 
+
+	position: absolute;
+	z-index: 500;
+
+	top: 0px; /* Really determined in the js */
+	left: 0px;
+
+	box-sizing: border-box;
+	border-radius: 100%;
+}
+
+.blot-out {
+	background-color: black;
+	
+	position: absolute;
+	z-index: 500;
+
+	width: 1px;
+	height: 1px;
+
+	box-sizing: border-box;
+	border-radius: 100%;
 }
 

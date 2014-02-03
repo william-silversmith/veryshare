@@ -2,6 +2,8 @@
  * 
  * Cartoon blot in and blot out animations.
  *
+ * Dependencies: jQuery and centerIn.js
+ *
  * Authors: William Silversmith & Alex Norton
  * Date: February 2014
  */
