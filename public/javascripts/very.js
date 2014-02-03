@@ -27,6 +27,11 @@
 		original_title: document.title,
 	};
 
+	var _flags = {
+		blink: true,
+		vibrate: true,
+	};
+
 	var _share_clicked_timer = null;
 	var _original_text = $('#main').text();
 
@@ -80,11 +85,9 @@
 				playStupidSound();
 				shareOnSelectedNetwork();
 				advanceSelectedNetwork();
-
-				// powerShare();
 			}
 			else {
-				$(this).addClass('pulsate');
+				//$(this).addClass('pulsate');
 			}
 
 			_sharecount++;
@@ -94,7 +97,7 @@
 			}
 
 			if (_reward_mode.init && !_reward_mode.active) {
-				startRewardMode();
+				rewardModeStepOne();
 			}
 
 			return false;
@@ -108,29 +111,40 @@
 		});
 	}
 
-	function startRewardMode() {
+	function rewardModeStepTwo() {
 		$('#share')
-			.addClass('green fadeToGreen reward')
-			.animationend(function (evt) {
-				$('#share').removeClass('fadeToGreen').addClass('pulsate');
-				_reward_mode.active = true;
-			})
-			.off('click')
-			.one('click', function () {
-				$(this).addClass('pulsate');
-				playStupidSound();
-				$.blotIn({
-					complete: function () {
-						var img = $("<img>")
-							.addClass('reward-1')
-							.attr('src', '/images/doge-sun-meme.jpg');
+			.addClass('green reward pulsate')
+			.removeClass('fadeToRed fadeToGreen')
+			.off('click');
+		
+		$('#main').fadeChangeText('So Share!');
+				
+		playStupidSound();
+		$.blotIn({
+			complete: function () {
+				var img = $("<img>")
+					.addClass('reward-1')
+					.attr('src', '/images/doge-sun-meme.jpg');
 
-						$('#share').empty().append(img);
-						
-						$.blotIn.off();
-					},
-				});
-			});
+				$('#share').empty().append(img);
+				
+				$.blotIn.off();
+			},
+		});
+	}
+
+	function rewardModeStepOne() {
+		$('#share')
+			.off('click')
+			.on('click', function () {
+				playStupidSound();
+				powerShare(rewardModeStepTwo);
+			})
+			.one('click', function () {
+				_flags.blink = false;
+				$('#main').fadeChangeText('GO FAST!');
+			})
+			.addClass('pulsate');
 
 		$('#main').fadeOut(200, function () {
 			$(this)
@@ -163,13 +177,13 @@
 	var powermodetimer = null;
 	var powermode = false;
 
-	function powerShare () {
+	function powerShare (fn) {
 		if (powermodetimer) {
 			powermodetimer = clearTimeout(powermodetimer);
 		}
 
 		if (!powermode) {
-			$(this)
+			$('#share')
 				.removeClass('fadeToRed')
 				.addClass('green fadeToGreen')
 				.animationend(function (evt) {
@@ -191,8 +205,12 @@
 					if (!$.browser.mobile) {
 						$('#share').addClass('pulsate');
 					}
+
+					if (fn) {
+						fn();
+					}
 				});
-		}, 1000);
+		}, 1500);
 	}
 
 	function shareOnSelectedNetwork () {
@@ -280,7 +298,7 @@
 
 		setInterval(function() {
 			if (!($('#share').is(':hover'))
-				&& !_reward_mode.init) {
+				&& _flags.vibrate) {
 
 				shakaroo($('#share'));
 			}
@@ -336,9 +354,13 @@
 		var repeat_delay = args.releat_delay || 7000;
 
 		var switcher = function () {
+			if (!_flags.blink) {
+				return;
+			}
+
 			var randomtxt = ['Share Me!'];
 			if (_reward_mode.init) {
-				randomtxt = ['? ? ? ?', "Mystery?", "This is?"];
+				randomtxt = ['? ? ? ?', "Mystery?", "What?"];
 			}
 
 			var text = random_choice(randomtxt);

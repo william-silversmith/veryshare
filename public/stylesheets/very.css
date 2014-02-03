@@ -116,7 +116,7 @@ body {
 }
 
 #share.reward {
-	font-family: 'Comic Sans', 'Comic Sans MS', cursive, sans-serif;
+	
 }
 
 #social {
@@ -129,6 +129,10 @@ body {
 
 	border-radius: 100%;
 	background-color: #bf1600;
+}
+
+#message {
+	display: none;
 }
 
 .untouchable {
