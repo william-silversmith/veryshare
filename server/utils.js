@@ -32,12 +32,12 @@
 	};
 
 	function random_choice (array) {
-		var index = random_integer(array.length - 1);
+		var index = random_integer(array.length);
 		return array[index];
 	};
 
 	function random_integer (max) {
-		return Math.round(Math.random() * max);
+		return Math.floor(Math.random() * max);
 	};
 
 	module.exports = {

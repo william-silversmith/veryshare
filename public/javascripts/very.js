@@ -144,9 +144,9 @@
 	function playStupidSound () {
 		if (_share_clicked_timer) {
 			_share_clicked_timer = clearInterval(_share_clicked_timer);
-			// clickMeBlinkDisplay({ 
-			// 	initial_delay: 5000
-			// });
+			clickMeBlinkDisplay({ 
+				initial_delay: 5000
+			});
 		}
 
 		if (_audioclips.length === 0) {
@@ -206,9 +206,9 @@
 
 		$('#next').click(advanceSelectedNetwork);
 
-		// clickMeBlinkDisplay({ 
-		// 	initial_delay: 3000
-		// });
+		clickMeBlinkDisplay({ 
+			initial_delay: 3000
+		});
 	}
 
 	function buttonSize() {
@@ -246,7 +246,7 @@
 	 *   initial_delay: msec delay before executing the first switch
 	 *   repeat_delay: 
 	 *
-	 * Returns:
+	 * Returns: void
 	 */
 	function clickMeBlinkDisplay (args) {
 		args = args || {};
@@ -254,14 +254,12 @@
 		var repeat_delay = args.releat_delay || 7000;
 
 		var switcher = function () {
-			var text = $.browser.mobile
-				? 'Touch Me!'
-				: 'Click Me!';
+			var text = random_choice(['Share Me!']);
 
 			$('#main').text(text);
 			setTimeout(function () {
 				$('#main').text(_original_text);
-			}, 400);
+			}, 1000);
 		};
 
 		setTimeout(function () {
@@ -279,18 +277,23 @@
 		
 		var diameter = $('#share').width();
 		
-		$(element).effect('shake', {
-			times: 7, 
-			distance: 3,
-			direction: direction,
-			complete: function () {
-				element.centerIn()
-			}
-		}, 10);
+		// $(element).effect('shake', {
+		// 	times: 7, 
+		// 	distance: 3,
+		// 	direction: direction,
+		// 	complete: function () {
+		// 		element.centerIn()
+		// 	}
+		// }, 10);
 	}
 
+	function random_choice (array) {
+		var index = random_integer(array.length);
+		return array[index];
+	};
+
 	function random_integer (max) {
-		return Math.round(Math.random() * max);
+		return Math.floor(Math.random() * max);
 	}
 
 	function range (from, to, incr) {
