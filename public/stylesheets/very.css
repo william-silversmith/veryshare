@@ -60,7 +60,6 @@ body {
 
 #share:hover {
 	opacity: 0.95;
-	box-shadow: 0 0 10px #AA6C28;
 }
 
 #share.pulsate:hover {
@@ -242,6 +241,11 @@ a {
 	position: absolute;
 	top: 1%;
 	right: 1%;
+}
+
+.reward-1 {
+	border-radius: 2px;
+	z-index: 1000;
 }
 
 /* Animations */

@@ -16,6 +16,17 @@
 
 	var NUMCLIPS = 15;
 
+	var _sharecount = 0;
+	var _critical_share_count = 1;
+
+	var _reward_mode = {
+		init: false,
+		active: false,
+		button_text: 'WOW!',
+		titles: ["Such Reward! ...", "WOW...", "? ? ?...", "What's that?!..."],
+		original_title: document.title,
+	};
+
 	var _share_clicked_timer = null;
 	var _original_text = $('#main').text();
 
@@ -64,43 +75,27 @@
 			}
 		}
 
-		var powermodetimer = null;
-		var powermode = false;
-
 		$('#share').click(function () {
-			playStupidSound();
-			shareOnSelectedNetwork();
-			advanceSelectedNetwork();
+			if (_sharecount < _critical_share_count) {
+				playStupidSound();
+				shareOnSelectedNetwork();
+				advanceSelectedNetwork();
 
-			if (powermodetimer) {
-				powermodetimer = clearTimeout(powermodetimer);
+				// powerShare();
+			}
+			else {
+				$(this).addClass('pulsate');
 			}
 
-			if (!powermode) {
-				$(this)
-					.removeClass('fadeToRed')
-					.addClass('green fadeToGreen')
-					.animationend(function (evt) {
-						$('#share')
-							.addClass('green')
-							.removeClass('fadeToGreen');
-					});
-				powermode = true;
+			_sharecount++;
+
+			if (_sharecount >= _critical_share_count) {
+				_reward_mode.init = true;
 			}
 
-			powermodetimer = setTimeout(function () {
-				powermodetimer = null;
-				powermode = false;
-
-				$('#share')
-					.addClass('fadeToRed')
-					.animationend(function () {
-						$('#share').removeClass('green fadeToRed');
-						if (!$.browser.mobile) {
-							$('#share').addClass('pulsate');
-						}
-					});
-			}, 1000);
+			if (_reward_mode.init && !_reward_mode.active) {
+				startRewardMode();
+			}
 
 			return false;
 		})
@@ -114,6 +109,93 @@
 		.on("touchend", function() {
    			return false;
 		});
+	}
+
+	function startRewardMode() {
+		$('#share')
+			.addClass('green fadeToGreen')
+			.animationend(function (evt) {
+				$('#share').removeClass('fadeToGreen').addClass('pulsate');
+				_reward_mode.active = true;
+			})
+			.off('click')
+			.one('click', function () {
+				$(this).addClass('pulsate');
+				playStupidSound();
+				$.blotIn({
+					complete: function () {
+						var img = $("<img>")
+							.addClass('reward-1')
+							.attr('src', '/images/doge-sun-meme.jpg');
+							
+						$('#share').empty().append(img);
+						
+						$.blotIn.off();
+					},
+				});
+			});
+
+		$('#main').fadeOut(200, function () {
+			$(this)
+				.text(_reward_mode.button_text)
+				.delayedCenterIn()
+				.fadeIn(200);
+		});
+
+		var counter = 0;
+		var attntimer = setInterval(function () {
+			if (counter % 2) {
+				document.title = random_choice(_reward_mode.titles);
+			}
+			else {
+				document.title = _reward_mode.original_title;
+			}
+
+			counter++;
+		}, 1500);
+
+
+		setTimeout(function () {
+			$(document).one('mouseover', function () {
+				clearInterval(attntimer);
+				document.title = _reward_mode.original_title;
+			});
+		}, 1000);
+	}
+
+	var powermodetimer = null;
+	var powermode = false;
+
+	function powerShare () {
+		if (powermodetimer) {
+			powermodetimer = clearTimeout(powermodetimer);
+		}
+
+		if (!powermode) {
+			$(this)
+				.removeClass('fadeToRed')
+				.addClass('green fadeToGreen')
+				.animationend(function (evt) {
+					$('#share')
+						.addClass('green')
+						.removeClass('fadeToGreen');
+				});
+			powermode = true;
+		}
+
+		powermodetimer = setTimeout(function () {
+			powermodetimer = null;
+			powermode = false;
+
+			$('#share')
+				.addClass('fadeToRed')
+				.animationend(function () {
+					$('#share').removeClass('green fadeToRed');
+					if (!$.browser.mobile) {
+						$('#share').addClass('pulsate');
+					}
+				});
+		}, 1000);
 	}
 
 	function shareOnSelectedNetwork () {
@@ -189,6 +271,7 @@
 				});
 
 			$('#social').alwaysCenterIn('#share', { direction: 'horizontal' });
+			$('#main').centerIn();
 		}, 300);
 
 		buttonSize();
@@ -254,12 +337,20 @@
 		var repeat_delay = args.releat_delay || 7000;
 
 		var switcher = function () {
-			var text = random_choice(['Share Me!']);
+			var randomtxt = ['Share Me!'];
+			if (_reward_mode.init) {
+				randomtxt = ['? ? ? ?', "Mystery?", "This is?"];
+			}
 
-			$('#main').text(text);
-			setTimeout(function () {
-				$('#main').text(_original_text);
-			}, 1000);
+			var text = random_choice(randomtxt);
+
+			$('#main').fadeChangeText(text, 1250, function () {
+				var txt = _reward_mode.init 
+					? _reward_mode.button_text 
+					: _original_text;
+
+				$('#main').fadeChangeText(txt);
+			});
 		};
 
 		setTimeout(function () {
@@ -326,7 +417,32 @@
 	};
 
 	$.fn.animationend = function (fn) {
-		$(this).one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', fn);
+		return $(this).one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', fn);
+	};
+
+	$.fn.fadeChangeText = function (text, cb_wait, callback) {
+		var timedcb;
+		if (callback) {
+			timedcb = function () {
+				setTimeout(callback, cb_wait);
+			};
+		}
+		
+		$(this).fadeOut(100, function () {
+			$(this)
+				.text(text)
+				.centerIn()
+				.fadeIn(100, timedcb);
+		});
+	};
+
+	$.fn.delayedCenterIn = function () {
+		var that = $(this);
+		setTimeout(function () {
+			that.centerIn();
+		}, 10);
+
+		return this;
 	};
 
 	$.browser = $.browser || {};
