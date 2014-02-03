@@ -16,7 +16,8 @@ case "$1" in
                 echo "$PIDFILE exists, process is already running or crashed"
         else
                 echo "Starting VeryShare server..."
-                $EXEC $CONF
+                `$EXEC`
+                cat $! > $PIDFILE
         fi
         ;;
     stop)
