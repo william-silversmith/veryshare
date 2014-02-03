@@ -5,5 +5,5 @@ COPY=`ls $VERYPATH | grep -v node_modules`
 echo $COPY
 
 cd $VERYPATH
-scp -r $COPY veryshare1:veryshare
+rsync -rvz $COPY veryshare1:veryshare
 

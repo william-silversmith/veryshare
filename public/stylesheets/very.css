@@ -115,6 +115,10 @@ body {
 	animation-name: deactivate;
 }
 
+#share.reward {
+	font-family: 'Comic Sans', 'Comic Sans MS', cursive, sans-serif;
+}
+
 #social {
 	position: absolute;
 	bottom: 10%;

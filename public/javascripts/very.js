@@ -110,7 +110,7 @@
 
 	function startRewardMode() {
 		$('#share')
-			.addClass('green fadeToGreen')
+			.addClass('green fadeToGreen reward')
 			.animationend(function (evt) {
 				$('#share').removeClass('fadeToGreen').addClass('pulsate');
 				_reward_mode.active = true;
@@ -279,7 +279,9 @@
 		}, 500);
 
 		setInterval(function() {
-			if (!($('#share').is(':hover'))) {
+			if (!($('#share').is(':hover'))
+				&& !_reward_mode.init) {
+				
 				shakaroo($('#share'));
 			}
 		}, Math.round(Math.random() * (5000) + 4500));
@@ -365,14 +367,14 @@
 		
 		var diameter = $('#share').width();
 		
-		// $(element).effect('shake', {
-		// 	times: 7, 
-		// 	distance: 3,
-		// 	direction: direction,
-		// 	complete: function () {
-		// 		element.centerIn()
-		// 	}
-		// }, 10);
+		$(element).effect('shake', {
+			times: 7, 
+			distance: 3,
+			direction: direction,
+			complete: function () {
+				element.centerIn()
+			}
+		}, 10);
 	}
 
 	function random_choice (array) {
