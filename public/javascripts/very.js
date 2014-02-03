@@ -105,9 +105,6 @@
 			if (!$.browser.mobile) {
 				$(this).removeClass('pulsate');
 			}
-		})
-		.on("touchend", function() {
-   			return false;
 		});
 	}
 
@@ -127,7 +124,7 @@
 						var img = $("<img>")
 							.addClass('reward-1')
 							.attr('src', '/images/doge-sun-meme.jpg');
-							
+
 						$('#share').empty().append(img);
 						
 						$.blotIn.off();
