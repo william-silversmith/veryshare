@@ -58,19 +58,24 @@
 	 * Animate the removal of the inward blot.
 	 *
 	 * Optional: Same as blotIn
+	 *	remove: Auotmatically remove at the end of the animation
 	 *
 	 * Returns: this
 	 */
 	$.blotIn.off = function (args) {
 		args = args || {};
 
+		var blot = $('.blot-in');
+
 		var radius = compute_radius();
 
 		var duration = args.duration || $.blot.defaults.duration; // msec
-		var complete = args.complete || function () {};
+		var complete = args.complete || function () {
+			blot.remove();
+		};
 		var easing = args.easing || $.blot.defaults.easing;
 
-		$('.blot-in').animate({
+		blot.animate({
 			borderWidth: 0,
 		}, duration, easing, complete);
 
@@ -118,7 +123,6 @@
 		return this;
 	};
 
-
 	/* blotOut.off
 	 *
 	 * Animate the removal of the blot.
@@ -130,13 +134,15 @@
 	$.blotOut.off = function (args) {
 		args = args || {};
 
+		var blot = $('.blot-out');
+
 		var radius = compute_radius();
 
 		var duration = args.duration || $.blot.defaults.duration; // msec
-		var complete = args.complete || function () {};
+		var complete = args.complete || function () {
+			blot.remove();
+		};
 		var easing = args.easing || $.blot.defaults.easing;
-
-		var blot = $('.blot-out');
 
 		blot.animate({
 			width: 0,
