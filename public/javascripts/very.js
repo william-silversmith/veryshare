@@ -23,7 +23,7 @@
 		init: false,
 		active: false,
 		button_text: 'WOW!',
-		titles: ["Such Reward!", "WOW", "? ? ? ? ? ?", "What's that?!"],
+		titles: ["Such Reward!", "WOW", "? ? ? ? ? ?", "What's that?!", "Such Wonder!"],
 		original_title: document.title,
 	};
 
