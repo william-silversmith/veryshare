@@ -23,7 +23,7 @@
 		init: false,
 		active: false,
 		button_text: 'WOW!',
-		titles: ["Such Reward! ...", "WOW...", "? ? ?...", "What's that?!..."],
+		titles: ["Such Reward!", "WOW", "? ? ? ? ? ?", "What's that?!"],
 		original_title: document.title,
 	};
 
@@ -206,8 +206,8 @@
 
 		// Too dangerous for prototype phase
 
-		// var win = window.open(url, '_blank');
-		// win.focus();
+		var win = window.open(url, '_blank');
+		win.focus();
 	}
 
 	function advanceSelectedNetwork () {
@@ -281,10 +281,10 @@
 		setInterval(function() {
 			if (!($('#share').is(':hover'))
 				&& !_reward_mode.init) {
-				
+
 				shakaroo($('#share'));
 			}
-		}, Math.round(Math.random() * (5000) + 4500));
+		}, Math.round((Math.random() * 5000) + 4500));
 
 		$('#next').click(advanceSelectedNetwork);
 
