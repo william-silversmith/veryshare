@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Share Voice | Very Share</title>
@@ -26,53 +26,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="/stylesheets/voice.css" async />
-  <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" async /> 
-  
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript" defer></script>
-  <script type="text/javascript" src="/javascripts/centerIn.js" defer></script>
-  <script type="text/javascript" src="/javascripts/voice.js" defer></script>
+  <link href='//fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-  <div id="mainContainer">
+  <header>
+    <div class="content"> 
       <h2 class="heart">&hearts;</h2>
       <h2 id="top">Hello beautiful person.</h2>
       <h1>We want you to share your voice with us!</h1>
        
       <p id="mission" class="centerIt">Submit a voice clip to <a href="mailto:love@<%= host %>?subject=Share%20Voice%20Submission">love@<%= host %></a> that expresses a spirit of earnestness,<br>optimism, and raw stupidity and we might just share it with the <span class="bold">world!</span></p>
-      <h3>Example Ideas</h3>
+    </div>
+  </header>
+  <main>
+    <div id="examples" >
+      <div class="content">
+        <h3>Example Ideas</h3>
 
-      <p class="original">It's classy to be original, but, if you're looking for ideas here's a few suggestions:</p>
+        <p class="original">It's classy to be original, but, if you're looking for ideas here's a few suggestions:</p>
 
-      <ul class="centerIt">
-        <li>very share</li>
-        <li>such share</li>
-        <li>so share</li>
-        <li>such amaze</li>
-        <li>such wonder</li>
-        <li>such wow</li>
-        <li>wow</li>
-      </ul>
+        <ul class="centerIt">
+          <li>very share</li>
+          <li>such share</li>
+          <li>so share</li>
+          <li>such amaze</li>
+          <li>such wonder</li>
+          <li>such wow</li>
+          <li>wow</li>
+        </ul>
 
-      <p id="example" class="original">Anything a <span class="bold">Shiba Inu</span> might say (don't take this one literally)</p>
+        <p id="example" class="original">Anything a <span class="bold">Shiba Inu</span> might say (don't take this one literally)</p>
+      </div>
+    </div>
 
-      <h3>Submission Details</h3>
+    <div id="details">
+      <div class="content">
+        <h3>Submission Details</h3>
 
-      <p id="originalBottom">To be accepted your clip must at minimum fufill the following conditions, though we reserve our discretion for exceptional cases:</p>
+        <p id="originalBottom">To be accepted your clip must at minimum fufill the following conditions, though we reserve our discretion for exceptional cases:</p>
 
-      <ul class="centerItSm">
-        <li>.wav file format</li>
-        <li>Length: < 2sec</li>
-        <li>File size: < 350kB</li>
-        <li>Limit two clip submissions per person</li>
-      </ul>
+        <ul class="centerItSm">
+          <li>.wav file format</li>
+          <li>Length: &lt; 2sec</li>
+          <li>File size: &lt; 350kB</li>
+          <li>Limit two clip submissions per person</li>
+        </ul>
 
-      <p class="originalBottomJ">
-        Clips in lanugages other than English should be accompanied by a written representationin the same language as the clip, a standard English transliteration (if using a non-latin script)and an English translation. Basically, we need to check Google Translate.<br><br>Additionally, by submitting a clip, you assert that you have the rights to that clip and agree to grant an unlimited perpetual world-wide non-exclusive irrevocable royalty-free copyright license to us to use (or not use at all) the clip in conjunction with Very Share. You also grant us permission to edit the clip for length, volume, and clarity. Basically, this means you're freely sharing the clip with us so we can freely share it with other people and we want to edit the clips to be clear, trimmed, and have a decibel level that makes sense in context with other clips. Don't count on us to do your work for you though. ;-)
-      </p>
-  </div>
+        <p class="originalBottomJ">
+          Clips in lanugages other than English should be accompanied by a written representationin the same language as the clip, a standard English transliteration (if using a non-latin script)and an English translation. Basically, we need to check Google Translate.<br><br>Additionally, by submitting a clip, you assert that you have the rights to that clip and agree to grant an unlimited perpetual world-wide non-exclusive irrevocable royalty-free copyright license to us to use (or not use at all) the clip in conjunction with Very Share. You also grant us permission to edit the clip for length, volume, and clarity. Basically, this means you're freely sharing the clip with us so we can freely share it with other people and we want to edit the clips to be clear, trimmed, and have a decibel level that makes sense in context with other clips. Don't count on us to do your work for you though. ;-)
+        </p>
+      </div>
+    </div>
+  </main>
+
   <script>
     <% if (process.env.APPENV === 'PRODUCTION') { %>
 

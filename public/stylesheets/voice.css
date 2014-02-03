@@ -21,26 +21,114 @@ body {
 	height:100%;
 	letter-spacing:0;
 	color:#434343;
-	background-color: #f2e6c2;
+	background-color: #F3ECD6;
 	position:relative;
 	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
+header {
+	width: 100%;
+	height: 33%;
+	min-height: 260px;
 
-#mainContainer {
-	margin-left: auto;
-	margin-right: auto;
-	width: 35%;
+	background-color: #F8F8F8;
+
+	margin: auto;
+	text-align: center;
+
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-flex-flow: row;
+	flex-flow: row;
+
+	-webkit-align-items: center;
+	align-items: center;
+
+	justify-content: center;
+	-webkit-justify-content: center;
+}
+
+header .content {
+}
+
+#mission {
+	margin-top: 20px;
+}
+	
+main {
+	display: -webkit-flex;
+	display: flex;
+
 	text-align: justify;
 	text-rendering: optimizeLegibility;
 	min-width: 450px;
 }
 
+#examples,
+#details {
+
+	padding-top: 1cm;
+	padding-bottom: 1cm;
+
+	padding-left: 5%;
+	padding-right: 5%;
+}	
+
+#examples {
+	-webkit-order: 1;
+	order: 1;
+
+	-webkit-flex: 0.8;
+	flex: 0.8;
+}
+
+#details {
+	-webkit-order: 2;
+	order: 2;
+
+	-webkit-flex: 1.6;
+	flex: 1.6;
+}
+
+
+@media (max-width: 700px) {
+	body {
+		font-size: 90%;
+	}
+
+	main {
+		-webkit-flex-flow: column;
+		flex-flow: column;
+
+		-webkit-align-items: center;
+		align-items: center;
+
+		justify-content: center;
+		-webkit-justify-content: center;
+	}
+
+	#details {
+		background-color: #F8F8F8;
+	}
+}
+@media (min-width: 701px) {
+	main {
+		-webkit-flex-flow: row;
+		flex-flow: row;
+
+		-webkit-align-items: flex-start;
+		align-items: flex-start;
+	}
+
+	#examples {
+		padding-right: 0px;
+	}
+}
+
 h1 {
 	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #bf1600;
@@ -48,13 +136,10 @@ h1 {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 50px;
-	margin-top: 15px;
 }
 
 h2 {
 	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
 	font-size: 1.5em;
 	color: rgb(15,15,15);
 	position: relative;
@@ -66,37 +151,31 @@ h2 {
 
 h3 {
 	font-family: 'Roboto', sans-serif;
-	font-weight: 300;
-	font-size: 1em;
+	font-size: 1.5em;
 	font-weight: bold;
 	color: rgb(15,15,15);
 	position: relative;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 1ex;
 	letter-spacing: .5px;
 }
 
 h2#top {
-	margin-top: -25px;
-	margin-bottom: 25px;
-	font-size: 1em;
-	padding-bottom: 25px;
-	border-bottom: 1px solid rgba(15, 15, 15, .25);
+	font-size: 1.5em;
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 h2.heart {
 	color: #681E1E;
-	margin-top: 75px;
-	margin-bottom: 50px;
 	font-size: 3em;
+	font-family: serif;
 }
 
 p.centerIt {
 	text-align: center;
-	margin-top: -35px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
@@ -105,17 +184,12 @@ p.centerIt {
 	line-height: 150%;
 }
 
-#mission .centerIt p{
-	margin-bottom: 25px;
-}
-
 p.original {
 	text-align: center;
-	margin-top: -45px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
+	font-size: 1em;
 	color: rgb(15,15,15);
 	line-height: 150%;
 }
@@ -124,18 +198,17 @@ p.originalBottom {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
+	font-size: 1em;
 	color: rgb(15,15,15);
 	line-height: 150%;
 }
 
 p#originalBottom {
 	text-align: center;
-	margin-top: -45px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
+	font-size: 1em;
 	color: rgb(15,15,15);
 	line-height: 150%;
 }
@@ -143,11 +216,10 @@ p#originalBottom {
 p.originalBottomJ {
 	text-align: justify;
 	text-rendering: optimizeLegibility;
-	margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
+	font-size: 1em;
 	color: rgb(15,15,15);
 	line-height: 150%;
 	display: block;
@@ -157,8 +229,6 @@ p.originalBottomJ {
 
 ul.centerIt {
 	text-align: center;
-	margin-top: 15px;
-	margin-bottom: 60px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
@@ -170,12 +240,10 @@ ul.centerIt {
 
 ul.centerItSm {
 	text-align: center;
-	margin-top: 15px;
-	margin-bottom: 15px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
+	font-size: 1em;
 	color: #bf1600;
 	line-height: 150%;
 }
