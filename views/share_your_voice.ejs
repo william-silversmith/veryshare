@@ -26,36 +26,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="/stylesheets/voice.css" async />
-  <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" async /> 
-  
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" defer></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript" defer></script>
-  <script type="text/javascript" src="/javascripts/smooth-scroll.js" defer></script>
-  <script type="text/javascript" src="/javascripts/centerIn.js" defer></script>
-  <script type="text/javascript" src="/javascripts/voice.js" defer></script>
+  <link href='//fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
   <header>
-    <nav>
-      <a data-scroll data-speed="1500" data-easing="easeInOutCubic" data-url="false" href="#introduction">Sharing</a>
-      <a data-scroll data-speed="1500" data-easing="easeInOutCubic" data-url="false" href="#examples">Examples</a>
-      <a data-scroll data-speed="1500" data-easing="easeInOutCubic" data-url="false" href="#details">Details</a>
-    </nav>
+    <div class="content"> 
+      <h2 class="heart">&hearts;</h2>
+      <h2 id="top">Hello beautiful person.</h2>
+      <h1>We want you to share your voice with us!</h1>
+       
+      <p id="mission" class="centerIt">Submit a voice clip to <a href="mailto:love@<%= host %>?subject=Share%20Voice%20Submission">love@<%= host %></a> that expresses a spirit of earnestness,<br>optimism, and raw stupidity and we might just share it with the <span class="bold">world!</span></p>
+    </div>
   </header>
   <main>
-    <div id="introduction" class="page">
-      <div class="content">
-        <h2 class="heart">&hearts;</h2>
-        <h2 id="top">Hello beautiful person.</h2>
-        <h1>We want you to share your voice with us!</h1>
-         
-        <p id="mission" class="centerIt">Submit a voice clip to <a href="mailto:love@<%= host %>?subject=Share%20Voice%20Submission">love@<%= host %></a> that expresses a spirit of earnestness,<br>optimism, and raw stupidity and we might just share it with the <span class="bold">world!</span></p>
-      </div>
-    </div>
-
-    <div id="examples" class="page">
+    <div id="examples" >
       <div class="content">
         <h3>Example Ideas</h3>
 
@@ -75,7 +60,7 @@
       </div>
     </div>
 
-    <div id="details" class="page">
+    <div id="details">
       <div class="content">
         <h3>Submission Details</h3>
 
@@ -83,8 +68,8 @@
 
         <ul class="centerItSm">
           <li>.wav file format</li>
-          <li>Length: < 2sec</li>
-          <li>File size: < 350kB</li>
+          <li>Length: &lt; 2sec</li>
+          <li>File size: &lt; 350kB</li>
           <li>Limit two clip submissions per person</li>
         </ul>
 
@@ -94,6 +79,7 @@
       </div>
     </div>
   </main>
+
   <script>
     <% if (process.env.APPENV === 'PRODUCTION') { %>
 
