@@ -280,13 +280,13 @@
 		var diameter = $('#share').width();
 		
 		$(element).effect('shake', {
-			times: 3, 
-			distance: diameter * .025,
+			times: 7, 
+			distance: 3,
 			direction: direction,
 			complete: function () {
 				element.centerIn()
 			}
-		}, 25);
+		}, 10);
 	}
 
 	function random_integer (max) {
