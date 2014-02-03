@@ -102,7 +102,6 @@
 					});
 			}, 1000);
 
-			$(this).preventDefault(); // trying to stop mobile highlight
 			return false;
 		})
 		.mousedown(function () {
@@ -113,7 +112,6 @@
 			}
 		})
 		.on("touchend", function() {
-			$(this).preventDefault(); // trying to stop mobile highlight
    			return false;
 		});
 	}
