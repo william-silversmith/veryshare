@@ -429,6 +429,7 @@
 		'such WOW!', 'WOW!', 'wow', 'such share',
 		'much viral', 'such amaze', 'very share',
 		'such wonder!', 'such legit', 'many friend',
+		'die squirrel'
 	];
 	function appear_doge_word () {
 		var item = $('<div>')
