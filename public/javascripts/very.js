@@ -143,6 +143,7 @@
 			.on('click', function () {
 				playStupidSound();
 				powerShare(rewardModeStepTwo);
+				appear_doge_word();
 			})
 			.one('click', function () {
 				_share_clicked_timer = clearInterval(_share_clicked_timer);
@@ -422,6 +423,34 @@
 		}
 
 		return rng;
+	}
+
+	var _phrases = [
+		'such WOW!', 'WOW!', 'wow', 'such share',
+		'much viral', 'such amaze', 'very share',
+		'such wonder!', 'such legit', 'many friend',
+	];
+	function appear_doge_word () {
+		var item = $('<div>')
+			.addClass('dogeitem')
+			.text(random_choice(_phrases));
+
+		var h = Math.floor($(window).innerHeight() * Math.random());
+		var w = Math.floor($(window).innerWidth() * Math.random());
+
+		item.css('top', h).css('left', w);
+
+		var fontsize = 0.5 + (2 * Math.random());
+		item.css('font-size', fontsize.toFixed(1) + "em");
+
+		var hexcolor = Math.floor(Math.pow(255, 3) * Math.random()).toString(16);
+		item.css('color', '#' + hexcolor);
+
+		$('body').append(item);
+
+		item.delay(1500).fadeOut(1000, function () {
+			//$(this).remove();
+		});
 	}
 
 	String.prototype.format_url = function (fmt) {

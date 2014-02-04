@@ -135,6 +135,15 @@ body {
 	display: none;
 }
 
+.dogeitem {
+	position: absolute;
+	z-index: 5;
+
+	width: 250px;
+
+	font-family: 'Comic Sans', 'Comic Sans MS', 'Roboto', sans-serif;
+}
+
 .untouchable {
 	outline: none !important;
 	-webkit-user-modify: read-only !important;
