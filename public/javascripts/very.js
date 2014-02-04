@@ -450,7 +450,7 @@
 		$('body').append(item);
 
 		item.delay(1500).fadeOut(1000, function () {
-			//$(this).remove();
+			$(this).remove();
 		});
 	}
 
