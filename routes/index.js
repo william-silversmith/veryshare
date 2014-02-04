@@ -61,7 +61,7 @@ var wows = [
 ];
 
 var HOST = 'veryshare.us';
-var DESCRIPTION = "Such share! Discover the secret!";	
+var DESCRIPTION = "Such wonder! Such share! Very share. Connect with each other with the act of sharing. There’s a surprise at the end.";	
 
 exports.index = function (req, res) {
 	var wow = utils.random_choice(wows);

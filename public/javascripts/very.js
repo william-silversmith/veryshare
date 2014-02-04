@@ -118,6 +118,9 @@
 			$('#share').addClass('pulsate');
 		}
 
+		_flags.blink = false;
+		_flags.vibrate = false;
+
 		$('#main').fadeChangeText('So Share!');
 				
 		playStupidSound();
@@ -142,7 +145,7 @@
 				powerShare(rewardModeStepTwo);
 			})
 			.one('click', function () {
-				_flags.blink = false;
+				_share_clicked_timer = clearInterval(_share_clicked_timer);
 				$('#main').fadeChangeText('GO FAST!');
 			});
 
@@ -150,12 +153,7 @@
 			$('#share').addClass('pulsate');
 		}
 
-		$('#main').fadeOut(200, function () {
-			$(this)
-				.text(_reward_mode.button_text)
-				.delayedCenterIn()
-				.fadeIn(200);
-		});
+		$('#main').fadeChangeText(_reward_mode.button_text);
 
 		var counter = 0;
 		var attntimer = setInterval(function () {
@@ -393,14 +391,16 @@
 		
 		var diameter = $('#share').width();
 		
-		$(element).effect('shake', {
-			times: 7, 
-			distance: 3,
-			direction: direction,
-			complete: function () {
-				element.centerIn()
-			}
-		}, 10);
+		if (_flags.vibrate) {
+			$(element).effect('shake', {
+				times: 7, 
+				distance: 3,
+				direction: direction,
+				complete: function () {
+					element.centerIn()
+				}
+			}, 10);
+		}
 	}
 
 	function random_choice (array) {
@@ -453,11 +453,11 @@
 			};
 		}
 		
-		$(this).fadeOut(100, function () {
+		$(this).fadeOut(200, function () {
 			$(this)
 				.text(text)
 				.centerIn()
-				.fadeIn(100, timedcb);
+				.fadeIn(200, timedcb);
 		});
 	};
 
