@@ -86,9 +86,6 @@
 				shareOnSelectedNetwork();
 				advanceSelectedNetwork();
 			}
-			else {
-				//$(this).addClass('pulsate');
-			}
 
 			_sharecount++;
 
@@ -113,10 +110,14 @@
 
 	function rewardModeStepTwo() {
 		$('#share')
-			.addClass('green reward pulsate')
+			.addClass('green reward')
 			.removeClass('fadeToRed fadeToGreen')
 			.off('click');
 		
+		if (!$.browser.mobile) {
+			$('#share').addClass('pulsate');
+		}
+
 		$('#main').fadeChangeText('So Share!');
 				
 		playStupidSound();
@@ -143,8 +144,11 @@
 			.one('click', function () {
 				_flags.blink = false;
 				$('#main').fadeChangeText('GO FAST!');
-			})
-			.addClass('pulsate');
+			});
+
+		if (!$.browser.mobile) {
+			$('#share').addClass('pulsate');
+		}
 
 		$('#main').fadeOut(200, function () {
 			$(this)
