@@ -26,7 +26,7 @@ redis.get('base', function (err, value) {
 	else {
 		value = parseInt(value, 10);
 
-		if (STATE.base > 10000000) {
+		if (STATE.base < 10000000) {
 			STATE.base = value;
 		}
 	}
@@ -120,7 +120,7 @@ exports.powershare = function (req, res) {
 };
 
 exports.shared = function (req, res) {
-	var data = JSON.parse(req.body);
+	var data = req.body;
 
 	redis.incr('shares');
 
@@ -129,6 +129,12 @@ exports.shared = function (req, res) {
 	}
 	else if (data.twitter) {
 		redis.incr('share-twitter');
+	}
+	else if (data.tumblr) {
+		redis.incr('share-tumblr');	
+	}
+	else if (data.googleplus) {
+		redis.incr('share-googleplus');	
 	}
 	else if (data.pinterest) {
 		redis.incr('share-pinterest');

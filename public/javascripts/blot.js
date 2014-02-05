@@ -29,8 +29,13 @@
 	 *
 	 * Returns: this
 	 */
-	$.blotIn = function (args) {
+	$.blotIn = function (args, complete) {
 		args = args || {};
+
+		if (typeof(args) === 'function') {
+			complete = args;
+			args = {};
+		}
 
 		var blot = $('<div>').addClass('blot-in');
 
@@ -43,7 +48,7 @@
 		$('body').append(blot);
 
 		var duration = args.duration || $.blot.defaults.duration; // msec
-		var complete = args.complete || function () {};
+		complete = complete || args.complete || function () {};
 		var easing = args.easing || $.blot.defaults.easing;
 
 		blot.animate({
@@ -62,22 +67,28 @@
 	 *
 	 * Returns: this
 	 */
-	$.blotIn.off = function (args) {
+	$.blotIn.off = function (args, complete) {
 		args = args || {};
+
+		if (typeof(args) === 'function') {
+			complete = args;
+			args = {};
+		}
 
 		var blot = $('.blot-in');
 
 		var radius = compute_radius();
 
 		var duration = args.duration || $.blot.defaults.duration; // msec
-		var complete = args.complete || function () {
-			blot.remove();
-		};
+		complete = complete || args.complete || function () {};
 		var easing = args.easing || $.blot.defaults.easing;
 
 		blot.animate({
 			borderWidth: 0,
-		}, duration, easing, complete);
+		}, duration, easing, function () {
+			blot.remove();
+			complete();
+		});
 
 		return this;
 	};
@@ -90,8 +101,13 @@
 	 *
 	 * Returns: this
 	 */
-	$.blotOut = function (args) {
+	$.blotOut = function (args, complete) {
 		args = args || {};
+
+		if (typeof(args) === 'function') {
+			complete = args;
+			args = {};
+		}
 
 		var blot = $('<div>').addClass('blot-out');
 
@@ -104,7 +120,7 @@
 		$('body').append(blot);
 
 		var duration = args.duration || $.blot.defaults.duration; // msec
-		var complete = args.complete || function () {};
+		complete = complete || args.complete || function () {};
 		var easing = args.easing || $.blot.defaults.easing;
 
 		blot.animate({
@@ -131,17 +147,20 @@
 	 *
 	 * Returns: this
 	 */
-	$.blotOut.off = function (args) {
+	$.blotOut.off = function (args, complete) {
 		args = args || {};
+
+		if (typeof(args) === 'function') {
+			complete = args;
+			args = {};
+		}
 
 		var blot = $('.blot-out');
 
 		var radius = compute_radius();
 
 		var duration = args.duration || $.blot.defaults.duration; // msec
-		var complete = args.complete || function () {
-			blot.remove();
-		};
+		complete = complete || args.complete || function () {};
 		var easing = args.easing || $.blot.defaults.easing;
 
 		blot.animate({
@@ -151,7 +170,10 @@
 		}, {
 			duration: duration,
 			easing: easing,
-			complete: complete,
+			complete: function () {
+				blot.remove();
+				complete();
+			},
 			step: function () {
 				blot.centerIn(window);
 			},

@@ -37,16 +37,16 @@
 
 	var _social_index = 0;
 	var _social_networks = [
-		{ name: 'Facebook', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "facebook.png" },
-		{ name: 'Twitter', url: 'http://twitter.com/intent/tweet?source=sharethiscom&text=#{DESCRIPTION}&url=#{VERYSHARE}', img: "twitter.png" },
+		{ name: 'Facebook', data: "facebook", url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "facebook.png" },
+		{ name: 'Twitter', data: "twitter", url: 'http://twitter.com/intent/tweet?source=sharethiscom&text=#{DESCRIPTION}&url=#{VERYSHARE}', img: "twitter.png" },
 		
 		// Need to think about Tumblr and Reddit
-		{ name: 'Tumblr', url: 'http://www.tumblr.com/share?v=3&u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "tumblr.png" },
-		//{ name: 'Reddit', url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "reddit.png" },
+		{ name: 'Tumblr', data: "tumblr", url: 'http://www.tumblr.com/share?v=3&u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "tumblr.png" },
+		//{ name: 'Reddit', data: "reddit", url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "reddit.png" },
 		
-		{ name: 'Pinterest', url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
-		{ name: 'Google Plus', url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "googleplus.png" },
-		{ name: 'Email', url: 'mailto:my_friends@example.com?subject=#{TITLE}&body=#{DESCRIPTION}', img: "email.png" },
+		{ name: 'Pinterest', data: "pinterest", url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
+		{ name: 'Google Plus', data: "googleplus", url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "googleplus.png" },
+		{ name: 'Email', data: "email", url: 'mailto:my_friends@example.com?subject=#{TITLE}&body=#{DESCRIPTION}', img: "email.png" },
 	];
 
 	$(document).ready(function() {
@@ -132,7 +132,9 @@
 
 				$('#share').empty().append(img);
 				
-				$.blotIn.off();
+				$.blotIn.off(function () {
+					$.post('/1.0/reward-seen');
+				});
 			},
 		});
 	}
@@ -184,13 +186,14 @@
 		background: ColorUtils.hexToRGB("#17B83E"),
 	};
 
-	
+	var powersharecounter = 0;
 
 	function powerShare (fn) {
 		if (powermodetimer) {
 			powermodetimer = clearTimeout(powermodetimer);
 		}
 
+		powersharecounter++;
 		powercolors.border = ColorUtils.rotate(-0.5, powercolors.border);;
 		powercolors.background = ColorUtils.rotate(-0.5, powercolors.background);
 
@@ -218,9 +221,12 @@
 				.removeClass('green fadeToRed')
 				.css('border-color', '')
 				.css('background-color', '');
+			
 			if (!$.browser.mobile) {
 				$('#share').addClass('pulsate');
 			}
+
+			$.post('/1.0/powershare', { powershare: powersharecounter });
 
 			if (fn) {
 				fn();
@@ -236,6 +242,10 @@
 			TITLE: "Wow!!! So share.",
 			DESCRIPTION: "Share with your friends! You'll make so many."
 		});
+
+		var payload = {};
+		payload[socialnetwork.data] = true;
+		$.post('/1.0/shared', payload);
 
 		// Too dangerous for prototype phase
 
