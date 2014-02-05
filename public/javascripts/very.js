@@ -84,7 +84,7 @@
 			if (_sharecount < _critical_share_count) {
 				playStupidSound();
 				shareOnSelectedNetwork();
-				advanceSelectedNetwork();
+				$('#social').fadeOut(200);
 			}
 
 			_sharecount++;
@@ -180,10 +180,22 @@
 	var powermodetimer = null;
 	var powermode = false;
 
+	var powercolors = {
+		border: ColorUtils.hexToRGB("#1F7F27"),
+		background: ColorUtils.hexToRGB("#17B83E"),
+	};
+
 	function powerShare (fn) {
 		if (powermodetimer) {
 			powermodetimer = clearTimeout(powermodetimer);
 		}
+
+		powercolors.border = ColorUtils.rotate(-0.5, powercolors.border);;
+		powercolors.background = ColorUtils.rotate(-0.5, powercolors.background);
+
+		$('#share')
+			.css('border-color', ColorUtils.rgbToHex(powercolors.border))
+			.css('background-color', ColorUtils.rgbToHex(powercolors.background));
 
 		if (!powermode) {
 			$('#share')
@@ -202,17 +214,16 @@
 			powermode = false;
 
 			$('#share')
-				.addClass('fadeToRed')
-				.animationend(function () {
-					$('#share').removeClass('green fadeToRed');
-					if (!$.browser.mobile) {
-						$('#share').addClass('pulsate');
-					}
+				.removeClass('green fadeToRed')
+				.css('border-color', '')
+				.css('background-color', '');
+			if (!$.browser.mobile) {
+				$('#share').addClass('pulsate');
+			}
 
-					if (fn) {
-						fn();
-					}
-				});
+			if (fn) {
+				fn();
+			}
 		}, 1500);
 	}
 
