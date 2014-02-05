@@ -5,9 +5,5 @@ COPY=`ls $VERYPATH | grep -v node_modules`
 echo $COPY
 
 cd $VERYPATH
-<<<<<<< HEAD
 rsync -rvz $COPY veryshare1:veryshare
-=======
-scp -r $COPY veryshare1:veryshare
->>>>>>> parent of 2e46ba2... Made deploy more robust.
 
