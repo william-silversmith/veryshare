@@ -226,7 +226,7 @@
 				$('#share').addClass('pulsate');
 			}
 
-			$.post('/1.0/powershare', { powershare: powersharecounter });
+			$.post('/1.0/power-share', { powershares: powersharecounter });
 
 			if (fn) {
 				fn();

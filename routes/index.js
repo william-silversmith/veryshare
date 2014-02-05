@@ -99,10 +99,10 @@ exports.share_your_voice = function (req, res) {
 // API
 
 exports.powershare = function (req, res) {
-	var data = JSON.parse(req.body);
+	var data = req.body;
 	
 	if (data.powershares) {
-		var numshare = parseInt(json.powershares, 10);
+		var numshare = parseInt(data.powershares, 10);
 
 		redis.incr('powershares');
 		redis.get('max_powershares', function (err, max_powershares) {
@@ -116,7 +116,11 @@ exports.powershare = function (req, res) {
 				redis.set('max_powershares', max_powershares);
 			}
 		});
+
+		res.end("true");
 	}
+
+	res.end("false");
 };
 
 exports.shared = function (req, res) {
@@ -145,10 +149,13 @@ exports.shared = function (req, res) {
 	else if (data.email) {
 		redis.incr('share-email');
 	}
+
+	res.end("true");
 };
 
 exports.rewardseen = function (req, res) {
 	redis.incr('reward-seen');
+	res.end("true");
 };
 
 
