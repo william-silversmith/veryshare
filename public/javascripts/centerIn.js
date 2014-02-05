@@ -93,6 +93,8 @@
 		$(window).on('focus.centerIn', function () {
 			setTimeout(centeringfn, 500);
 		});
+
+		return this;
 	 };
 
 	/* Defaults */

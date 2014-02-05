@@ -23,7 +23,7 @@
   <meta property="og:image" content="http://<%= host %>/images/veryshare.png" />
   <meta property="og:description" content="<%= description %>" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   <link rel="stylesheet" href="/stylesheets/very.css" async />
   <link href='//fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css' async />
@@ -52,6 +52,8 @@
   </div>
 
   <a target="_blank" id="submit-vocals" href="/share-your-voice">Such Voice!</a>
+
+  <div id="youshared"></div>
 
   <script>
     var you_are = <%= you_are %>;

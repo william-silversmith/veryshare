@@ -258,6 +258,18 @@ a {
 	right: 1%;
 }
 
+#youshared {
+	display: none;
+	position: absolute;
+	bottom: 5%;
+	
+	-webkit-user-select: text;
+	user-select: text;
+
+	cursor: pointer;
+	color: #bf1600;
+}
+
 .reward-1 {
 	border-radius: 2px;
 	z-index: 1000;

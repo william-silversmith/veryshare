@@ -44,7 +44,7 @@
 		{ name: 'Tumblr', data: "tumblr", url: 'http://www.tumblr.com/share?v=3&u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "tumblr.png" },
 		//{ name: 'Reddit', data: "reddit", url: 'https://www.facebook.com/sharer.php?u=#{VERYSHARE}&t=#{TITLE}&s=#{DESCRIPTION}', img: "reddit.png" },
 		
-		{ name: 'Pinterest', data: "pinterest", url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
+		{ name: 'Pinterest', data: "pinterest", url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=http://#{VERYSHARE}/#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
 		{ name: 'Google Plus', data: "googleplus", url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "googleplus.png" },
 		{ name: 'Email', data: "email", url: 'mailto:my_friends@example.com?subject=#{TITLE}&body=#{DESCRIPTION}', img: "email.png" },
 	];
@@ -52,6 +52,9 @@
 	$(document).ready(function() {
 		shareButtonConfiguration();
 		configureAudio();
+		$('#youshared').alwaysCenterIn(window, {
+			direction: 'horizontal',
+		});
 	});
 
 	function configureAudio () {
@@ -83,7 +86,12 @@
 		$('#share').click(function () {
 			if (_sharecount < _critical_share_count) {
 				playStupidSound();
-				shareOnSelectedNetwork();
+				shareOnSelectedNetwork({
+					title: "Wow! So share.",
+					description: "Share with your friends! You'll make so many.",
+					media: "/images/veryshare.png",
+				});
+
 				$('#social').fadeOut(200);
 			}
 
@@ -108,6 +116,34 @@
 		});
 	}
 
+	function rewardModeStepThree () {
+		var img = $("<img>")
+				.addClass('reward-1')
+				.attr('src', '/images/doge-sun-meme.jpg');
+
+		$('#share, #youare').hide();
+		
+		$.blotIn.off(function () {
+			$.post('/1.0/reward-seen');
+		});
+
+		$('#youshared')
+			.centerIn(window, { direction: 'horizontal' })
+			.fadeIn(200, function () {
+				$(this).centerIn(window, { direction: 'horizontal' });
+			})
+			.text("You powershared " + powersharecounter + " times!")
+			.click(function () {
+				var timestr = (powersharecounter === 1) ? ' time' : ' times';
+
+				shareOnSelectedNetwork({
+					title: "Wow!!! POWERSHARE.",
+					description: "I POWERSHARED " + powersharecounter + timestr +  " on Very Share! Think you can beat me?",
+					media: "/images/veryshare.png",
+				}) 
+			});
+	}
+
 	function rewardModeStepTwo() {
 		$('#share')
 			.addClass('green reward')
@@ -124,19 +160,7 @@
 		$('#main').fadeChangeText('So Share!');
 				
 		playStupidSound();
-		$.blotIn({
-			complete: function () {
-				var img = $("<img>")
-					.addClass('reward-1')
-					.attr('src', '/images/doge-sun-meme.jpg');
-
-				$('#share').empty().append(img);
-				
-				$.blotIn.off(function () {
-					$.post('/1.0/reward-seen');
-				});
-			},
-		});
+		$.blotIn(rewardModeStepThree);
 	}
 
 	function rewardModeStepOne() {
@@ -151,6 +175,8 @@
 				_share_clicked_timer = clearInterval(_share_clicked_timer);
 				$('#main').fadeChangeText('GO FAST!');
 			});
+
+		$('#next').hide();
 
 		if (!$.browser.mobile) {
 			$('#share').addClass('pulsate');
@@ -234,13 +260,16 @@
 		}, 1500);
 	}
 
-	function shareOnSelectedNetwork () {
+	function shareOnSelectedNetwork (args) {
+		args = args || {};
+
 		var socialnetwork = _social_networks[_social_index];
 		
 		var url = socialnetwork.url.format_url({
 			VERYSHARE: HOST,
-			TITLE: "Wow!!! So share.",
-			DESCRIPTION: "Share with your friends! You'll make so many."
+			TITLE: args.title,
+			DESCRIPTION: args.description,
+			MEDIA: args.media,
 		});
 
 		var payload = {};
