@@ -1,7 +1,7 @@
-#!/bin/sh                                                                                                                                     
-#                                                                                                                                             
-# Simple Redis init.d script conceived to work on Linux systems                                                                               
-# as it does use of the /proc filesystem.                                                                                                     
+#!/bin/sh
+#
+# Simple Redis init.d script conceived to work on Linux systems
+# as it does use of the /proc filesystem.
 
 export PORT=80
 export APPENV=PRODUCTION
@@ -17,7 +17,6 @@ case "$1" in
         else
                 echo "Starting VeryShare server..."
                 `$EXEC`
-                cat $! > $PIDFILE
         fi
         ;;
     stop)
@@ -26,20 +25,21 @@ case "$1" in
                 echo "$PIDFILE does not exist, process is not running"
         else
                 PID=$(cat $PIDFILE)
-                echo "Stopping ..."
-                kill $PID
+                echo "Stopping PID $PID ..."
+        kill $PID
                 while [ -x /proc/${PID} ]
                 do
                     echo "Waiting for VeryShare to shutdown ..."
                     sleep 1
                 done
+        rm $PIDFILE
                 echo "VeryShare stopped"
         fi
         ;;
     restart)
-	$0 stop;
-	$0 start;
-	;;
+        $0 stop;
+        $0 start;
+    ;;
     *)
         echo "Please use start or stop as first argument"
         ;;

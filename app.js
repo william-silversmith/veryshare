@@ -7,6 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var fs = require('fs');
 
 var app = express();
 var utils = require('./server/utils.js');
@@ -32,6 +33,12 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/share-your-voice', routes.share_your_voice);
+
+app.post('/1.0/shared', routes.shared);
+app.post('/1.0/power-share', routes.powershare);
+app.post('/1.0/reward-seen', routes.rewardseen);
+
+fs.writeFile("/etc/run/veryshare.pid", process.pid);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

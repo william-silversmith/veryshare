@@ -179,11 +179,12 @@
 
 	var powermodetimer = null;
 	var powermode = false;
-
 	var powercolors = {
 		border: ColorUtils.hexToRGB("#1F7F27"),
 		background: ColorUtils.hexToRGB("#17B83E"),
 	};
+
+	
 
 	function powerShare (fn) {
 		if (powermodetimer) {
@@ -440,8 +441,10 @@
 		'such WOW!', 'WOW!', 'wow', 'such share',
 		'much viral', 'such amaze', 'very share',
 		'such wonder!', 'such legit', 'many friend',
-		'die squirrel'
+		'die squirrel', 'such inspire', 'much inspire',
+		'such surprise'
 	];
+
 	function appear_doge_word () {
 		var item = $('<div>')
 			.addClass('dogeitem')

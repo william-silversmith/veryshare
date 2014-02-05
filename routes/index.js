@@ -26,7 +26,7 @@ redis.get('base', function (err, value) {
 	else {
 		value = parseInt(value, 10);
 
-		if (STATE.base > 30000) {
+		if (STATE.base > 10000000) {
 			STATE.base = value;
 		}
 	}
@@ -96,6 +96,54 @@ exports.share_your_voice = function (req, res) {
 };
 
 
+// API
+
+exports.powershare = function (req, res) {
+	var data = JSON.parse(req.body);
+	
+	if (data.powershares) {
+		var numshare = parseInt(json.powershares, 10);
+
+		redis.incr('powershares');
+		redis.get('max_powershares', function (err, max_powershares) {
+			if (err) {
+				console.log(err);
+			}
+
+			max_powershares = parseInt(max_powershares, 10);
+
+			if (numshare > max_powershares) {
+				redis.set('max_powershares', max_powershares);
+			}
+		});
+	}
+};
+
+exports.shared = function (req, res) {
+	var data = JSON.parse(req.body);
+
+	redis.incr('shares');
+
+	if (data.facebook) {
+		redis.incr('share-facebook');
+	}
+	else if (data.twitter) {
+		redis.incr('share-twitter');
+	}
+	else if (data.pinterest) {
+		redis.incr('share-pinterest');
+	}
+	else if (data.reddit) {
+		redis.incr('share-reddit');
+	}
+	else if (data.email) {
+		redis.incr('share-email');
+	}
+};
+
+exports.rewardseen = function (req, res) {
+	redis.incr('reward-seen');
+};
 
 
 
