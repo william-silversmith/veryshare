@@ -143,6 +143,19 @@
 					media: "/images/veryshare.png",
 				}) 
 			});
+
+		$('#rewardtext')
+			.alwaysCenterIn(window, { direction: 'horizontal' })
+			.fadeIn(200, function () {
+				$(this).centerIn(window, { direction: 'horizontal' })
+			})
+			.html("It was me all along!<br>Thanks for sharing fellow shibe, it's for my health! &hearts;");
+
+		var doge = $('<img>').attr('src', '/images/doge-sun-meme.jpg');
+		$('#container').append(doge);
+		doge.load(function () {
+			doge.alwaysCenterIn(window)
+		});
 	}
 
 	function rewardModeStepTwo() {

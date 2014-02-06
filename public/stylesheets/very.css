@@ -279,21 +279,29 @@ a {
 	right: 1%;
 }
 
+#rewardtext,
 #youshared {
 	display: none;
 	position: absolute;
-	bottom: 5%;
+	bottom: 8%;
 	
 	-webkit-user-select: text;
 	user-select: text;
 
-	cursor: pointer;
 	color: #bf1600;
+	font-family: 'Comic Sans', 'Comic Sans MS', 'Roboto', sans-serif;
+	font-size: 1.25em;
+	text-align: center;
+	line-height: 2.5ex;
 }
 
-.reward-1 {
-	border-radius: 2px;
-	z-index: 1000;
+#youshared {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#rewardtext {
+	top: 8%;
 }
 
 /* Animations */
