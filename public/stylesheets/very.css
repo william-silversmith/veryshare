@@ -279,6 +279,7 @@ a {
 	right: 1%;
 }
 
+#again,
 #rewardtext,
 #youshared {
 	display: none;
@@ -301,7 +302,13 @@ a {
 }
 
 #rewardtext {
-	top: 8%;
+	top: 5%;
+}
+
+#again {
+	top: 13%;
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 /* Animations */

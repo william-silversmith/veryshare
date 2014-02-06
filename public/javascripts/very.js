@@ -28,8 +28,8 @@
 	};
 
 	var _flags = {
-		blink: false,
-		vibrate: false,
+		blink: true,
+		vibrate: true,
 	};
 
 	var _share_clicked_timer = null;
@@ -150,6 +150,15 @@
 				$(this).centerIn(window, { direction: 'horizontal' })
 			})
 			.html("It was me all along!<br>Thanks for sharing fellow shibe, it's for my health! &hearts;");
+
+		$('#again')
+			.alwaysCenterIn(window, { direction: 'horizontal' })
+			.fadeIn(200, function () {
+				$(this).centerIn(window, { direction: 'horizontal' })
+			})
+			.click(function () {
+				location.reload();
+			});
 
 		var doge = $('<img>').attr('src', '/images/doge-sun-meme.jpg');
 		$('#container').append(doge);
