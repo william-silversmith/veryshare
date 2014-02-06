@@ -55,7 +55,7 @@ body {
  	cursor: pointer;
     z-index: 2;
 
-    font-family: 'Oleo Script', 'Comic Sans', sans-serif;
+    font-family: 'Oleo Script', 'Comic Sans', 'Comic Sans MS', sans-serif;
 }
 
 #share:hover {
@@ -131,6 +131,10 @@ body {
 	background-color: #bf1600;
 }
 
+#social.hover {
+	background-color: #CC220C;
+}
+
 #message {
 	display: none;
 }
@@ -186,6 +190,23 @@ body {
 .fadeToGreen #social {
 	-webkit-animation-name: social-activate;
 	animation-name: social-activate;
+}
+
+.social-switch-network {
+	-webkit-animation-name: social-switch-network;
+	animation-name: social-switch-network;
+
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+
+	-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 #youare,
@@ -370,6 +391,23 @@ a {
 @keyframes social-deactivate {
 	0% {
 		background-color: #1F7F27;
+	}
+	100% {
+		background-color: #bf1600;
+	}
+}
+
+@-webkit-keyframes social-switch-network {
+	0%{
+		background-color: #D14D3C;
+	}
+	100% {
+		background-color: #bf1600;
+	}
+}
+@keyframes social-switch-network {
+	0%{
+		background-color: #D14D3C;
 	}
 	100% {
 		background-color: #bf1600;

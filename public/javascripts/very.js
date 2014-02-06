@@ -28,8 +28,8 @@
 	};
 
 	var _flags = {
-		blink: true,
-		vibrate: true,
+		blink: false,
+		vibrate: false,
 	};
 
 	var _share_clicked_timer = null;
@@ -46,12 +46,13 @@
 		
 		{ name: 'Pinterest', data: "pinterest", url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=http://#{VERYSHARE}/#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
 		{ name: 'Google Plus', data: "googleplus", url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "googleplus.png" },
-		{ name: 'Email', data: "email", url: 'mailto:my_friends@example.com?subject=#{TITLE}&body=#{DESCRIPTION}', img: "email.png" },
+		{ name: 'Email', data: "email", url: 'mailto:myfriends@example.com?subject=#{TITLE}&body=#{DESCRIPTION}', img: "email.png" },
 	];
 
 	$(document).ready(function() {
 		shareButtonConfiguration();
 		configureAudio();
+
 		$('#youshared').alwaysCenterIn(window, {
 			direction: 'horizontal',
 		});
@@ -290,6 +291,8 @@
 			.attr('src', '/images/' + next_network.img)
 			.attr('title', next_network.name)
 			.attr('alt', next_network.name);
+
+		$('#social').cssAnimation('social-switch-network');
 	}
 
 	function playStupidSound () {
@@ -358,11 +361,18 @@
 			}
 		}, Math.round((Math.random() * 5000) + 4500));
 
-		$('#next').click(advanceSelectedNetwork);
+		$('#next')
+			.mouseover(function () {
+				$('#social').addClass('hover');
+			})
+			.mouseout(function () {
+				$('#social').removeClass('hover');
+			})
+			.click(advanceSelectedNetwork);
 
 		clickMeBlinkDisplay({ 
 			initial_delay: 3000
-		});
+		});		
 	}
 
 	function buttonSize() {
@@ -522,6 +532,16 @@
 		});
 
 		return str;
+	};
+
+	$.fn.cssAnimation = function (css_class) {
+		$(this)
+			.addClass(css_class)
+			.animationend(function () {
+				$(this).removeClass(css_class);
+			});
+
+		return this;
 	};
 
 	$.fn.animationend = function (fn) {
