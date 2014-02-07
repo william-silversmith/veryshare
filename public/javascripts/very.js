@@ -242,9 +242,17 @@
 			powermodetimer = clearTimeout(powermodetimer);
 		}
 
+		var colorchangemagic = function (color) {
+			color = ColorUtils.brighten({
+				percent: 0.18,
+				color: color,
+			});
+			return ColorUtils.rotate(-0.5, color);
+		};
+
 		powersharecounter++;
-		powercolors.border = ColorUtils.rotate(-0.5, powercolors.border);;
-		powercolors.background = ColorUtils.rotate(-0.5, powercolors.background);
+		powercolors.border = colorchangemagic(powercolors.border);
+		powercolors.background = colorchangemagic(powercolors.background);
 
 		$('#share')
 			.css('border-color', ColorUtils.rgbToHex(powercolors.border))
