@@ -42,6 +42,7 @@ body {
 #details {
 	background-color: #F5DDBF;
 	min-height: 750px;
+	padding-bottom: 150px;
 }
 
 .content {
