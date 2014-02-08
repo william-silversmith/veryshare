@@ -521,7 +521,8 @@
 		'much viral', 'such amaze', 'very share',
 		'such wonder!', 'such legit', 'many friend',
 		'die squirrel', 'such inspire', 'much inspire',
-		'such surprise'
+		'such surprise', 'very excite', 'such experiment',
+		'many happy'
 	];
 
 	function appear_doge_word () {

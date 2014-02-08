@@ -20,7 +20,7 @@ body {
 	width:100%;
 	height:100%;
 	position:relative;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Comic Sans', 'Comic Sans MS', sans-serif;
 	font-weight: 300;
 	-webkit-font-smoothing: subpixel-antialiased;
 }
@@ -41,17 +41,19 @@ body {
 }
 
 #examples {
-	background-color: #f8efd4;
+	background-color: #F7EAC5;
 	min-height: 550px;
 }
 
 #details {
-	background-color: #f6ebc9;
+	background-color: #F5DDBF;
 	min-height: 550px;
+	padding: 15%;
+	padding-top: 0;
+	padding-bottom: 5%;
 }
 
 h1 {
-	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 	font-size: 1.5em;
 	font-weight: bold;
@@ -61,7 +63,7 @@ h1 {
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 50px;
-	margin-top: 15px;
+	margin-top: 40px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
@@ -70,7 +72,6 @@ only screen and (-o-device-pixel-ratio: 3/2),
 only screen and (min-device-pixel-ratio: 1.5) {
     
 	body h1 {
-		font-family: 'Roboto', sans-serif;
 		font-weight: 300;
 		font-size: 1.5em;
 		font-weight: bold;
@@ -87,7 +88,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 h2 {
-	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 	font-size: 1.5em;
 	color: rgb(15,15,15);
@@ -99,7 +99,6 @@ h2 {
 }
 
 h3 {
-	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 	font-size: 1em;
 	font-weight: bold;
@@ -114,7 +113,6 @@ h3 {
 }
 
 #examples h3, #details h3 {
-	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 	font-size: 1em;
 	font-weight: bold;
@@ -125,19 +123,18 @@ h3 {
 	margin-right: auto;
 	padding-top: 125px;
 	margin-top: 0px;
-	margin-bottom: 50px;
+	margin-bottom: 70px;
 	letter-spacing: .5px;
 }
 
 h2#top {
-	margin-top: -25px;
 	margin-bottom: 25px;
 	font-size: 1em;
 }
 
 h2.heart {
 	color: #681E1E;
-	margin-bottom: 50px;
+	margin-bottom: 25px;
 	font-size: 3em;
 	padding-top: 125px;
 	font-family: serif;
@@ -182,7 +179,6 @@ p.original {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
 	color: rgb(15,15,15);
 	line-height: 150%;
 }
@@ -200,7 +196,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		position: relative;
 		width: 80%;
 		max-width: 750px;
-		font-size: .75em;
 		line-height: 150%;
 	}
 }
@@ -210,7 +205,6 @@ p.originalBottom {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
 	color: rgb(15,15,15);
 	line-height: 150%;
 }
@@ -221,7 +215,6 @@ p#originalBottom {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
 	color: rgb(15,15,15);
 	line-height: 150%;
 }
@@ -238,7 +231,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		margin-right: auto;
 		width: 80%;
 		position: relative;
-		font-size: .75em;
 		line-height: 150%;
 		max-width: 750px;
 	}
@@ -251,7 +243,6 @@ p.originalBottomJ {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
 	line-height: 150%;
 	display: block;
 	width: 750px;
@@ -270,7 +261,6 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		margin-left: auto;
 		margin-right: auto;
 		position: relative;
-		font-size: .75em;
 		line-height: 150%;
 		display: block;
 		width: 80%;
@@ -299,7 +289,6 @@ ul.centerItSm {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	font-size: .75em;
 	color: #bf1600;
 	line-height: 150%;
 }
