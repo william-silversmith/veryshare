@@ -1,6 +1,8 @@
 (function ($, undefined) {
 	$(document).ready(function () {
-		//$('.content').alwaysCenterIn();
+		$('.content').each(function (elem) {
+			$(elem).alwaysCenterIn();
+		});
 	});
 })(jQuery);
 
