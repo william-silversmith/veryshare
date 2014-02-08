@@ -22,9 +22,7 @@ body {
 	position:relative;
 	font-family: 'Comic Sans', 'Comic Sans MS', sans-serif;
 	font-weight: 300;
-	-webkit-font-smoothing: subpixel-antialiased;
 }
-
 
 #content,
 #examples,
@@ -289,22 +287,12 @@ a {
 	color: #bf1600;
 }
 
-.rule {
-		border-bottom: 1px solid rgba(15, 15, 15, .25);
-		text-align: center;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 35px;
+#winky {
+	text-align: center;
+	margin-top: 40px;
+	-webkit-transform: rotate(2.7181828rad);
+	transform: rotate(2.7181828rad);
+	font-family: Helvetica, Arial;
+	font-size: 18pt;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (-o-device-pixel-ratio: 3/2), 
-only screen and (min-device-pixel-ratio: 1.5) {
-    
-    body .rule {
-        width: 80%;
-        max-width: 750px;
-    }
-}
