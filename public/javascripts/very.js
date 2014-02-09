@@ -243,11 +243,7 @@
 		}
 
 		var colorchangemagic = function (color) {
-			color = ColorUtils.brighten({
-				percent: 0.18,
-				color: color,
-			});
-			return ColorUtils.rotate(-0.5, color);
+			return ColorUtils.rotate(-3.5, color);
 		};
 
 		powersharecounter++;
@@ -454,7 +450,7 @@
 
 			var randomtxt = ['Share Me!'];
 			if (_reward_mode.init) {
-				randomtxt = ['? ? ? ?', "Mystery?", "What?"];
+				randomtxt = ['? ? ?', "Mystery?", "What?"];
 			}
 
 			var text = random_choice(randomtxt);
@@ -522,7 +518,7 @@
 		'such wonder!', 'such legit', 'many friend',
 		'die squirrel', 'such inspire', 'much inspire',
 		'such surprise', 'very excite', 'such experiment',
-		'many happy'
+		'many happy', 'many clicks'	
 	];
 
 	function appear_doge_word () {
