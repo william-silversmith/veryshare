@@ -50,21 +50,27 @@ var ColorUtils = {};
 	 *
 	 * Required: 
 	 *   [0] degrees
-	 *   [1] color: { r, g, b } or { h, s, v }
+	 *   [1] color: { r, g, b, a } or { h, s, v, a }
 	 * 
-	 * Returns: { r, g, b }
+	 * Returns: { r, g, b, a }
 	 */
 	ColorUtils.rotate = function (degrees, color) { 
+		var alpha = color.a || 1;
+
 		if (color.r !== undefined) {
 			color = ColorUtils.RGBtoHSV(color.r, color.g, color.b);
 		}
 
 		color.h += degrees;
-		color.h = (color.h < 0) 
-			? 360 + color.h 
-			: color.h;
 
-		return ColorUtils.HSVtoRGB(color.h, color.s, color.v);
+		if (color.h < 0) {
+			color.h = 360 - (Math.abs(color.h) % 360);
+		}
+
+		color = ColorUtils.HSVtoRGB(color.h, color.s, color.v);
+		color.a = alpha;
+
+		return color;
 	};
 
 	/* brighten
@@ -108,6 +114,38 @@ var ColorUtils = {};
 		hsl.l += cutoff(args.percent / 100, 0, 1);
 
 		return ColorUtils.HSLtoRGB(hsl.h, hsl.s, hsl.l);		
+	};
+
+	/* interpolate
+	 *
+	 * Performs a linear interpolation in
+	 * RGB color space.
+	 *
+	 * Required:
+	 *   start: {r,g,b}
+	 *   end: {r,g,b}
+	 *   percent: [0, 100]
+	 *
+	 * Returns: {r,g,b}
+	 */
+	ColorUtils.interpolate = function (args) {
+		args = args || {};
+
+		var percent = args.percent || 0;
+		percent = cutoff(percent / 100, 0, 1);
+
+		var change = function (dimension) {
+			var val = args.start[dimension];
+			var delta = args.end[dimension] - args.start[dimension];
+
+			return Math.round(cutoff((val + (delta * percent)), 0, 255));
+		};
+
+		return {
+			r: change('r'),
+			g: change('g'),
+			b: change('b'),
+		};
 	};
 
 	/* toHSL
@@ -393,9 +431,21 @@ var ColorUtils = {};
 	 */
 	ColorUtils.rgbToHex = function (rgb) {
 		var hex = "#";
-		hex += Math.round(rgb.r).toString(16);
-		hex += Math.round(rgb.g).toString(16);
-		hex += Math.round(rgb.b).toString(16);
+
+		function codegen (num) {
+			var str = "";
+			if (num <= 9) {
+				str += "0";
+			}
+
+			str += Math.round(num).toString(16);
+			
+			return str;
+		}
+
+		hex += codegen(rgb.r);
+		hex += codegen(rgb.g);
+		hex += codegen(rgb.b);
 
 		return hex;
 	};

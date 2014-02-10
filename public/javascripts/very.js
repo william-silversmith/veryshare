@@ -28,8 +28,8 @@
 	};
 
 	var _flags = {
-		blink: true,
-		vibrate: true,
+		blink: false,
+		vibrate: false,
 	};
 
 	var _share_clicked_timer = null;
@@ -230,11 +230,6 @@
 
 	var powermodetimer = null;
 	var powermode = false;
-	var powercolors = {
-		border: ColorUtils.hexToRGB("#1F7F27"),
-		background: ColorUtils.hexToRGB("#17B83E"),
-	};
-
 	var powersharecounter = 0;
 
 	function powerShare (fn) {
@@ -242,17 +237,25 @@
 			powermodetimer = clearTimeout(powermodetimer);
 		}
 
-		var colorchangemagic = function (color) {
-			return ColorUtils.rotate(-3.5, color);
-		};
-
 		powersharecounter++;
-		powercolors.border = colorchangemagic(powercolors.border);
-		powercolors.background = colorchangemagic(powercolors.background);
+
+		var percent = Math.min(powersharecounter / 25 * 100, 100);
+
+		var bordercolor = ColorUtils.interpolate({
+			end: ColorUtils.hexToRGB("#bf1600"), 
+			start: ColorUtils.hexToRGB("#1F7F27"),
+			percent: percent,
+		});
+
+		var backgroundcolor = ColorUtils.interpolate({
+			end: ColorUtils.hexToRGB("#fc1d00"), 
+			start: ColorUtils.hexToRGB("#17B83E"),
+			percent: percent,
+		});
 
 		$('#share')
-			.css('border-color', ColorUtils.rgbToHex(powercolors.border))
-			.css('background-color', ColorUtils.rgbToHex(powercolors.background));
+			.css('border-color', ColorUtils.rgbToHex(bordercolor))
+			.css('background-color', ColorUtils.rgbToHex(backgroundcolor));
 
 		if (!powermode) {
 			$('#share')
