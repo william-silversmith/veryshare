@@ -28,7 +28,7 @@
 
 	var _flags = {
 		blink: true,
-		vibrate: false,
+		vibrate: true,
 	};
 
 	var _share_clicked_timer = null;
@@ -257,23 +257,23 @@
 		}
 
 		powermodetimer = setTimeout(function () {
-			// powermodetimer = null;
-			// powermode = false;
+			powermodetimer = null;
+			powermode = false;
 
-			// $('#share')
-			// 	.removeClass('green fadeToRed')
-			// 	.css('border-color', '')
-			// 	.css('background-color', '');
+			$('#share')
+				.removeClass('green fadeToRed')
+				.css('border-color', '')
+				.css('background-color', '');
 			
-			// if (!$.browser.mobile) {
-			// 	$('#share').addClass('pulsate');
-			// }
+			if (!$.browser.mobile) {
+				$('#share').addClass('pulsate');
+			}
 
-			// $.post('/1.0/power-share', { powershares: powersharecounter });
+			$.post('/1.0/power-share', { powershares: powersharecounter });
 
-			// if (fn) {
-			// 	fn();
-			// }
+			if (fn) {
+				fn();
+			}
 		}, 1500);
 	}
 
