@@ -115,17 +115,21 @@
 		$('#youare').hide();
 
 		$('#share')
-			.removeClass('fadeToSun greenToSun fadeToGreen green sun')
+			.removeClass('fadeToSun fadeToGreen green')
 			.addClass('reward')
 			.css('background-image', 'url(' + DOGE_IMAGE_SRC + ')')
 			.off('click').on('click', function () {
 				if (!$.browser.mobile) {
 					$('#share').addClass('pulsate');
 				}
-				
+
 				shareOnSelectedNetwork();
 			})
 			.centerIn();
+
+		if (powerstate === 'sun') {
+			$('#share').addClass('sun');
+		}
 
 		$('#main')
 			.text(_original_text)
@@ -138,6 +142,8 @@
 		$.blotIn.off(function () {
 			_flags.vibrate = true;
 			_flags.blink = false;
+
+			$('#share').removeClass('fadeToSun fadeToGreen green')
 
 			$.post('/1.0/reward-seen');
 		});
