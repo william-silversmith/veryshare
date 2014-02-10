@@ -118,12 +118,14 @@
 			.removeClass('fadeToSun greenToSun fadeToGreen green sun')
 			.addClass('reward')
 			.css('background-image', 'url(' + DOGE_IMAGE_SRC + ')')
-			.off('click').on('click', shareOnSelectedNetwork)
+			.off('click').on('click', function () {
+				if (!$.browser.mobile) {
+					$('#share').addClass('pulsate');
+				}
+				
+				shareOnSelectedNetwork();
+			})
 			.centerIn();
-
-		if (!$.browser.mobile) {
-			$('#share').addClass('pulsate');
-		}
 
 		$('#main')
 			.text(_original_text)
