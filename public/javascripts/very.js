@@ -116,8 +116,6 @@
 
 		$('#share')
 			.removeClass('green sun')
-			.css('width', '')
-			.css('height', '')
 			.addClass('reward')
 			.css('background-image', 'url(' + DOGE_IMAGE_SRC + ')')
 			.centerIn();
