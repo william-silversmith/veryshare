@@ -17,7 +17,6 @@
 	var NUMCLIPS = 15;
 
 	var _sharecount = 0;
-	var _critical_share_count = 1;
 
 	var _reward_mode = {
 		init: false,
@@ -28,7 +27,7 @@
 	};
 
 	var _flags = {
-		blink: false,
+		blink: true,
 		vibrate: false,
 	};
 
@@ -47,6 +46,15 @@
 		{ name: 'Pinterest', data: "pinterest", url: 'http://pinterest.com/pin/create/button/?url=#{VERYSHARE}&media=http://#{VERYSHARE}/#{MEDIA}&description=#{DESCRIPTION}', img: "pinterest.png" },
 		{ name: 'Google Plus', data: "googleplus", url: 'https://plus.google.com/share?url=#{VERYSHARE}', img: "googleplus.png" },
 		{ name: 'Email', data: "email", url: 'mailto:myfriends@example.com?subject=#{TITLE}&body=#{DESCRIPTION}', img: "email.png" },
+	];
+
+	var _standard_phrases = [
+		'such WOW!', 'WOW!', 'wow', 'such share',
+		'much viral', 'such amaze', 'very share',
+		'such wonder!', 'such legit', 'many friend',
+		'die squirrel', 'such inspire', 'much inspire',
+		'such surprise', 'very excite', 'such experiment',
+		'many happy', 'many clicks'	
 	];
 
 	$(document).ready(function() {
@@ -85,28 +93,10 @@
 		}
 
 		$('#share').click(function () {
-			if (_sharecount < _critical_share_count) {
-				playStupidSound();
-				shareOnSelectedNetwork({
-					title: "Wow! So share.",
-					description: "Share with your friends! You'll make so many.",
-					media: "/images/veryshare.png",
-				});
-
-				$('#social').fadeOut(200);
-			}
-
 			_sharecount++;
-
-			if (_sharecount >= _critical_share_count) {
-				_reward_mode.init = true;
-			}
-
-			if (_reward_mode.init && !_reward_mode.active) {
-				rewardModeStepOne();
-			}
-
-			return false;
+			_reward_mode.init = true;
+			playStupidSound();
+			rewardModeStepOne();
 		})
 		.mousedown(function () {
 			// Pulsate animation conflicts with activate/deactivate
@@ -192,10 +182,11 @@
 			.on('click', function () {
 				playStupidSound();
 				powerShare(rewardModeStepTwo);
-				appear_doge_word();
+				appearDogeWord(_standard_phrases);
 			})
 			.one('click', function () {
 				_share_clicked_timer = clearInterval(_share_clicked_timer);
+				_flags.blink = false;
 				$('#main').fadeChangeText('GO FAST!');
 			});
 
@@ -231,6 +222,7 @@
 	var powermodetimer = null;
 	var powermode = false;
 	var powersharecounter = 0;
+	var powerstate = 'green';
 
 	function powerShare (fn) {
 		if (powermodetimer) {
@@ -238,55 +230,50 @@
 		}
 
 		powersharecounter++;
+		
+		if (powersharecounter === 25
+			|| (powersharecounter > 25
+				&& (powersharecounter - 25) % 40 === 0)) {
 
-		var percent = Math.min(powersharecounter / 25 * 100, 100);
-
-		var bordercolor = ColorUtils.interpolate({
-			end: ColorUtils.hexToRGB("#bf1600"), 
-			start: ColorUtils.hexToRGB("#1F7F27"),
-			percent: percent,
-		});
-
-		var backgroundcolor = ColorUtils.interpolate({
-			end: ColorUtils.hexToRGB("#fc1d00"), 
-			start: ColorUtils.hexToRGB("#17B83E"),
-			percent: percent,
-		});
-
-		$('#share')
-			.css('border-color', ColorUtils.rgbToHex(bordercolor))
-			.css('background-color', ColorUtils.rgbToHex(backgroundcolor));
+			if (powerstate === 'green') {
+				$('#share')
+					.removeClass('green red sun')
+					.cssAnimation('fadeToSun', 'sun');
+				powerstate = 'sun';
+			}
+			else {
+				$('#share')
+					.removeClass('sun red green')
+					.cssAnimation('sunToGreen', 'green');
+				powerstate = 'green';
+			}
+		}
 
 		if (!powermode) {
 			$('#share')
 				.removeClass('fadeToRed')
-				.addClass('green fadeToGreen')
-				.animationend(function (evt) {
-					$('#share')
-						.addClass('green')
-						.removeClass('fadeToGreen');
-				});
+				.cssAnimation('fadeToGreen', 'green');
 			powermode = true;
 		}
 
 		powermodetimer = setTimeout(function () {
-			powermodetimer = null;
-			powermode = false;
+			// powermodetimer = null;
+			// powermode = false;
 
-			$('#share')
-				.removeClass('green fadeToRed')
-				.css('border-color', '')
-				.css('background-color', '');
+			// $('#share')
+			// 	.removeClass('green fadeToRed')
+			// 	.css('border-color', '')
+			// 	.css('background-color', '');
 			
-			if (!$.browser.mobile) {
-				$('#share').addClass('pulsate');
-			}
+			// if (!$.browser.mobile) {
+			// 	$('#share').addClass('pulsate');
+			// }
 
-			$.post('/1.0/power-share', { powershares: powersharecounter });
+			// $.post('/1.0/power-share', { powershares: powersharecounter });
 
-			if (fn) {
-				fn();
-			}
+			// if (fn) {
+			// 	fn();
+			// }
 		}, 1500);
 	}
 
@@ -459,6 +446,10 @@
 			var text = random_choice(randomtxt);
 
 			$('#main').fadeChangeText(text, 1250, function () {
+				if (!_flags.blink) {
+					return;
+				}
+
 				var txt = _reward_mode.init 
 					? _reward_mode.button_text 
 					: _original_text;
@@ -515,19 +506,10 @@
 		return rng;
 	}
 
-	var _phrases = [
-		'such WOW!', 'WOW!', 'wow', 'such share',
-		'much viral', 'such amaze', 'very share',
-		'such wonder!', 'such legit', 'many friend',
-		'die squirrel', 'such inspire', 'much inspire',
-		'such surprise', 'very excite', 'such experiment',
-		'many happy', 'many clicks'	
-	];
-
-	function appear_doge_word () {
+	function appearDogeWord (phrases) {
 		var item = $('<div>')
 			.addClass('dogeitem')
-			.text(random_choice(_phrases));
+			.text(random_choice(phrases));
 
 		var h = Math.floor($(window).innerHeight() * Math.random());
 		var w = Math.floor($(window).innerWidth() * Math.random());
@@ -564,11 +546,13 @@
 		return str;
 	};
 
-	$.fn.cssAnimation = function (css_class) {
+	$.fn.cssAnimation = function (animation_class, final_state_class) {
 		$(this)
-			.addClass(css_class)
+			.addClass(animation_class)
 			.animationend(function () {
-				$(this).removeClass(css_class);
+				$(this)
+					.addClass(final_state_class)
+					.removeClass(animation_class);
 			});
 
 		return this;

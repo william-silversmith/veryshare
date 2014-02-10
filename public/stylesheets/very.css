@@ -47,7 +47,7 @@ body {
 	border-width: 18px;
 	border-radius: 100%;
 	background-color: #fc1d00;
-	color: white;
+	color: #f2e6c2;
 	opacity: .9;
 	position: relative;
     text-align: center;
@@ -79,8 +79,10 @@ body {
 	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-#share.red,
-#share.green {
+#share.fadeToRed,
+#share.fadeToGreen,
+#share.fadeToSun,
+#share.sunToGreen {
 	opacity: 1;
 
 	-webkit-animation-delay: 0s;
@@ -88,9 +90,6 @@ body {
 
 	-webkit-animation-iteration-count: 1;
 	animation-iteration-count: 1;
-
-	-webkit-animation-duration: 0.25s;
-	animation-duration: 0.25s;
 
 	-webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 	transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -100,19 +99,51 @@ body {
 	
 }
 
+#share.purple {
+	border-color: #791192;
+	background-color: #9118E2;
+}
+
 #share.green {
 	border-color: #1F7F27;
 	background-color: #17B83E;
 }
 
+#share.sun {
+	background-color: #FFF95E;
+	color: #535315;
+	border-color: #FFFFB2;
+	box-shadow: 0 0 47px #FFF;
+}
+
+#share.fadeToSun {
+	-webkit-animation-name: activate-sun;
+	animation-name: activate-sun;
+	-webkit-animation-duration: 5s;
+	animation-duration: 5s;
+}
+
+#share.sunToGreen {
+	-webkit-animation-name: deactivate-sun;
+	animation-name: deactivate-sun;
+	-webkit-animation-duration: 5s;
+	animation-duration: 5s;
+}
+
 #share.fadeToGreen {
 	-webkit-animation-name: activate;
 	animation-name: activate;
+
+	-webkit-animation-duration: 0.25s;
+	animation-duration: 0.25s;
 }
 
 #share.fadeToRed {
 	-webkit-animation-name: deactivate;
 	animation-name: deactivate;
+	
+	-webkit-animation-duration: 0.25s;
+	animation-duration: 0.25s;
 }
 
 #share.reward {
@@ -120,6 +151,7 @@ body {
 }
 
 #social {
+	display: none;
 	position: absolute;
 	bottom: 10%;
 	left: 41%;
@@ -212,7 +244,6 @@ body {
 #youare,
 #main {
 	font-size: 2.5em;
-	color: #f2e6c2;
 	letter-spacing: .5px;
 	-webkit-font-smoothing: antialiased;
 }
@@ -249,6 +280,7 @@ body {
 }
 
 #next {
+	display: none;
 	color: #bf1600;
 
 	position: absolute;
@@ -426,6 +458,64 @@ a {
 	}
 	100% {
 		background-color: #bf1600;
+	}
+}
+
+@-webkit-keyframes activate-sun {
+	0% {
+		color: #f2e6c2;
+		border-color: #1F7F27;
+		background-color: #17B83E;
+		box-shadow: 0 0 0 transparent;
+	}
+	100% {
+		background-color: #FFF95E;
+		color: #535315;
+		border-color: #FFFFB2;
+		box-shadow: 0 0 47px #FFF;
+	}
+}
+@keyframes activate-sun {
+	0% {
+		color: #f2e6c2;
+		border-color: #1F7F27;
+		background-color: #17B83E;
+		box-shadow: 0 0 0 transparent;
+	}
+	100% {
+		background-color: #FFF95E;
+		color: #535315;
+		border-color: #FFFFB2;
+		box-shadow: 0 0 47px #FFF;
+	}
+}
+
+@-webkit-keyframes deactivate-sun {
+	0% {
+		background-color: #FFF95E;
+		color: #535315;
+		border-color: #FFFFB2;
+		box-shadow: 0 0 47px #FFF;
+	}
+	100% {
+		color: #f2e6c2;
+		border-color: #1F7F27;
+		background-color: #17B83E;
+		box-shadow: 0 0 0 transparent;
+	}
+}
+@keyframes deactivate-sun {
+	0% {
+		background-color: #FFF95E;
+		color: #535315;
+		border-color: #FFFFB2;
+		box-shadow: 0 0 47px #FFF;
+	}
+	100% {
+		color: #f2e6c2;
+		border-color: #1F7F27;
+		background-color: #17B83E;
+		box-shadow: 0 0 0 transparent;
 	}
 }
 
