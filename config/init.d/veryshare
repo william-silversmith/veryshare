@@ -5,6 +5,10 @@
 
 export PORT=80
 export APPENV=PRODUCTION
+export VERYSHAREDIR=/home/ubuntu/veryshare/
+
+ORIGINALDIR=`pwd`
+cd $VERYSHAREDIR
 
 PIDFILE=/etc/run/veryshare.pid
 EXEC="screen -d -m -L -S veryshare nodejs /home/ubuntu/veryshare/app"
@@ -44,3 +48,5 @@ case "$1" in
         echo "Please use start or stop as first argument"
         ;;
 esac
+
+cd $ORIGINALDIR

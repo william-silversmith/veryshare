@@ -48,7 +48,7 @@ setInterval(function () {
 
 /* Doge config */
 
-var dogeimagesdir = fs.readdirSync("public/images/doge/");
+var dogeimagesdir = fs.readdirSync((process.env.VERYSHAREDIR || "") + "public/images/doge/");
 var dogeimages = [];
 
 dogeimagesdir.forEach(function (val) {
@@ -58,7 +58,7 @@ dogeimagesdir.forEach(function (val) {
 });
 dogeimagesdir = undefined;
 
-var dogeimagewords = utils.load("reward-words.json");
+var dogeimagewords = utils.load((process.env.VERYSHAREDIR || "") + "reward-words.json");
 
 /*
  * GET home page.
