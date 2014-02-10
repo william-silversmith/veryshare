@@ -48,7 +48,7 @@ setInterval(function () {
 
 /* Doge config */
 
-var dogeimagesdir = fs.readdirSync("/Users/administrator/veryshare/public/images/doge");
+var dogeimagesdir = fs.readdirSync("public/images/doge/");
 var dogeimages = [];
 
 dogeimagesdir.forEach(function (val) {
