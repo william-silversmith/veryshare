@@ -27,8 +27,8 @@
 	};
 
 	var _flags = {
-		blink: false,
-		vibrate: false,
+		blink: true,
+		vibrate: true,
 	};
 
 	var _share_clicked_timer = null;
@@ -115,9 +115,10 @@
 		$('#youare').hide();
 
 		$('#share')
-			.removeClass('green sun')
+			.removeClass('fadeToSun greenToSun fadeToGreen green sun')
 			.addClass('reward')
 			.css('background-image', 'url(' + DOGE_IMAGE_SRC + ')')
+			.off('click').on('click', shareOnSelectedNetwork)
 			.centerIn();
 
 		if (!$.browser.mobile) {
@@ -129,7 +130,13 @@
 			.centerIn()
 			.addClass('reward');
 
+		$('#social').show();
+		$('#next').show();
+
 		$.blotIn.off(function () {
+			_flags.vibrate = true;
+			_flags.blink = false;
+
 			$.post('/1.0/reward-seen');
 		});
 

@@ -167,6 +167,7 @@ body {
 
 	border-radius: 100%;
 	background-color: #bf1600;
+	opacity: 0.85;
 }
 
 #social.hover {
@@ -341,10 +342,12 @@ a {
 
 #rewardtext {
 	top: 5%;
+	height: 50px;
 }
 
 #again {
 	top: 13%;
+	height: 20px;
 	cursor: pointer;
 	text-decoration: underline;
 }
