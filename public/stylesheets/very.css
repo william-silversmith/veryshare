@@ -141,13 +141,21 @@ body {
 #share.fadeToRed {
 	-webkit-animation-name: deactivate;
 	animation-name: deactivate;
-	
+
 	-webkit-animation-duration: 0.25s;
 	animation-duration: 0.25s;
 }
 
 #share.reward {
-	
+	height: 300px;
+	width: 300px;
+	background-color: none;
+	background-position: center;
+	background-size: cover;
+}
+
+#main.reward {
+	color: rgba(39, 39, 39, 0.36);
 }
 
 #social {

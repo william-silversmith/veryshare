@@ -27,8 +27,8 @@
 	};
 
 	var _flags = {
-		blink: true,
-		vibrate: true,
+		blink: false,
+		vibrate: false,
 	};
 
 	var _share_clicked_timer = null;
@@ -112,8 +112,25 @@
 				.addClass('reward-1')
 				.attr('src', DOGE_IMAGE_SRC);
 
-		$('#share, #youare').hide();
-		
+		$('#youare').hide();
+
+		$('#share')
+			.removeClass('green sun')
+			.css('width', '')
+			.css('height', '')
+			.addClass('reward')
+			.css('background-image', 'url(' + DOGE_IMAGE_SRC + ')')
+			.centerIn();
+
+		if (!$.browser.mobile) {
+			$('#share').addClass('pulsate');
+		}
+
+		$('#main')
+			.text(_original_text)
+			.centerIn()
+			.addClass('reward');
+
 		$.blotIn.off(function () {
 			$.post('/1.0/reward-seen');
 		});
@@ -149,12 +166,6 @@
 			.click(function () {
 				location.reload();
 			});
-
-		var doge = $('<img>').attr('src', DOGE_IMAGE_SRC);
-		$('#container').append(doge);
-		doge.load(function () {
-			doge.alwaysCenterIn(window)
-		});
 
 		setInterval(function () {
 			appearDogeWord(DOGE_IMAGE_WORDS);
@@ -367,7 +378,7 @@
 		}, 300);
 
 		buttonSize();
-		$(window).on('resize', buttonSize);
+		$(window).on('resize.buttonSize', buttonSize);
 		
 		setTimeout(function () { 
 			shakaroo($('#share')); 
