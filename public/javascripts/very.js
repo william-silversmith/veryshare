@@ -110,7 +110,7 @@
 	function rewardModeStepThree () {
 		var img = $("<img>")
 				.addClass('reward-1')
-				.attr('src', '/images/doge-sun-meme.jpg');
+				.attr('src', DOGE_IMAGE_SRC);
 
 		$('#share, #youare').hide();
 		
@@ -150,11 +150,15 @@
 				location.reload();
 			});
 
-		var doge = $('<img>').attr('src', '/images/doge-sun-meme.jpg');
+		var doge = $('<img>').attr('src', DOGE_IMAGE_SRC);
 		$('#container').append(doge);
 		doge.load(function () {
 			doge.alwaysCenterIn(window)
 		});
+
+		setInterval(function () {
+			appearDogeWord(DOGE_IMAGE_WORDS);
+		}, 3000);
 	}
 
 	function rewardModeStepTwo() {

@@ -1,4 +1,5 @@
 
+var fs = require('fs');
 var utils = require('../server/utils.js');
 var redis_module = require('redis');
 
@@ -26,9 +27,7 @@ redis.get('base', function (err, value) {
 	else {
 		value = parseInt(value, 10);
 
-		if (STATE.base < 10000000) {
-			STATE.base = value;
-		}
+		STATE.base = value;
 	}
 });
 
@@ -47,6 +46,19 @@ setInterval(function () {
 	}
 }, 60000);
 
+/* Doge config */
+
+var dogeimagesdir = fs.readdirSync("/Users/administrator/veryshare/public/images/doge");
+var dogeimages = [];
+
+dogeimagesdir.forEach(function (val) {
+	if (/(jpe?g|png)$/i.test(val)) {
+		dogeimages.push(val);
+	}
+});
+dogeimagesdir = undefined;
+
+var dogeimagewords = utils.load("reward-words.json");
 
 /*
  * GET home page.
@@ -71,9 +83,13 @@ exports.index = function (req, res) {
 			console.log(err);
 		}
 
-		if (visits > 4000000) {
-			visits = 0;
-		}
+		console.log(dogeimagewords);
+
+		var image = utils.random_choice(dogeimages);
+		var key = image.replace(/\.(jpe?g|png)$/i, '').toLowerCase();
+
+		console.log(image);
+		console.log(key);
 
 		visits = parseInt(visits, 10);
 		res.render('index', { 
@@ -81,6 +97,8 @@ exports.index = function (req, res) {
 			description: DESCRIPTION,
 			wow: wow,
 			you_are: (visits + STATE.base).toFixed(0),
+			doge_img_src: "/images/doge/" + image,
+			doge_img_words: dogeimagewords[key],
 		});
 	});
 

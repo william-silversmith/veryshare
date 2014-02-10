@@ -60,6 +60,8 @@
   <script>
     var you_are = <%= you_are %>;
     var HOST = "<%= host %>";
+    var DOGE_IMAGE_SRC = "<%= doge_img_src %>";
+    var DOGE_IMAGE_WORDS = <%- JSON.stringify(doge_img_words) %>;
 
     <% if (process.env.APPENV === 'PRODUCTION') { %>
 
