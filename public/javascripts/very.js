@@ -165,11 +165,11 @@
 			});
 
 		$('#rewardtext')
+			.html("It was me all along!<br>Thanks for sharing fellow shibe, it's for my health! <span class='heart'>&hearts;</span>")
 			.alwaysCenterIn(window, { direction: 'horizontal' })
 			.fadeIn(200, function () {
 				$(this).centerIn(window, { direction: 'horizontal' })
-			})
-			.html("It was me all along!<br>Thanks for sharing fellow shibe, it's for my health! &hearts;");
+			});
 
 		$('#again')
 			.alwaysCenterIn(window, { direction: 'horizontal' })

@@ -286,12 +286,13 @@ body {
 	height: 100%;
 }
 
+#again,
 #next {
 	display: none;
 	color: #bf1600;
 
 	position: absolute;
-	bottom: 13%;
+	bottom: 20%;
 	text-align: center;
 	cursor: pointer;
 
@@ -299,6 +300,13 @@ body {
 	letter-spacing: 2px;
 }
 
+#again {
+	top: 20%;
+	height: 20px;
+	cursor: pointer;
+}
+
+#again:hover,
 #next:hover {
 	color: #fc1d00;
 }
@@ -318,7 +326,6 @@ a {
 	right: 1%;
 }
 
-#again,
 #rewardtext,
 #youshared {
 	display: none;
@@ -332,7 +339,7 @@ a {
 	font-family: 'Comic Sans', 'Comic Sans MS', 'Roboto', sans-serif;
 	font-size: 1.25em;
 	text-align: center;
-	line-height: 2.5ex;
+	line-height: 2.7ex;
 }
 
 #youshared {
@@ -345,11 +352,8 @@ a {
 	height: 50px;
 }
 
-#again {
-	top: 13%;
-	height: 20px;
-	cursor: pointer;
-	text-decoration: underline;
+.heart {
+	font-family: serif;
 }
 
 /* Animations */
