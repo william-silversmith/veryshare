@@ -107,7 +107,7 @@ exports.index = function (req, res) {
 exports.share_your_voice = function (req, res) {
 	res.render('share_your_voice', { 
 		host: HOST,
-		description: DESCRIPTION,
+		description: "Such wonder! Such share! Very share. Share your voice by submitting a clip to love@veryshare.us!",
 	});
 };
 
