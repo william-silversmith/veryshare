@@ -83,8 +83,6 @@ exports.index = function (req, res) {
 			console.log(err);
 		}
 
-		console.log(dogeimagewords);
-
 		var image = utils.random_choice(dogeimages);
 		var key = image.replace(/\.(jpe?g|png)$/i, '').toLowerCase();
 
