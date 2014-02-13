@@ -1,0 +1,5 @@
+
+*** FATAL CONFIG FILE ERROR ***
+Reading the configuration file, at line 94
+>>> 'logfile "/var/log/redis_6385.log"'
+Can't open the log file: Permission denied

@@ -92,19 +92,24 @@
 			}
 		}
 
-		$('#share').click(function () {
-			_sharecount++;
-			_reward_mode.init = true;
-			playStupidSound();
-			rewardModeStepOne();
-		})
-		.mousedown(function () {
-			// Pulsate animation conflicts with activate/deactivate
-			// animations on the same element
-			if (!$.browser.mobile) {
-				$(this).removeClass('pulsate');
-			}
-		});
+		$('#share')
+			.on('click', function () {
+				playStupidSound();
+				powerShare(rewardModeStepTwo);
+				appearDogeWord(_standard_phrases);
+			})
+			.one('click', function () {
+				_share_clicked_timer = clearInterval(_share_clicked_timer);
+				_flags.blink = false;
+				$('#main').fadeChangeText('GO FAST!');
+			})
+			.mousedown(function () {
+				// Pulsate animation conflicts with activate/deactivate
+				// animations on the same element
+				if (!$.browser.mobile) {
+					$(this).removeClass('pulsate');
+				}
+			});
 	}
 
 	function rewardModeStepThree () {
@@ -148,15 +153,15 @@
 			$.post('/1.0/reward-seen');
 		});
 
+		var timestr = (powersharecounter === 1) ? ' time' : ' times';
+
 		$('#youshared')
 			.centerIn(window, { direction: 'horizontal' })
 			.fadeIn(200, function () {
 				$(this).centerIn(window, { direction: 'horizontal' });
 			})
-			.text("You powershared " + powersharecounter + " times!")
+			.text("You powershared " + powersharecounter + timestr + "!")
 			.click(function () {
-				var timestr = (powersharecounter === 1) ? ' time' : ' times';
-
 				shareOnSelectedNetwork({
 					title: "Wow!!! POWERSHARE.",
 					description: "I POWERSHARED " + powersharecounter + timestr +  " on Very Share! Think you can beat me?",
@@ -202,49 +207,6 @@
 				
 		playStupidSound();
 		$.blotIn(rewardModeStepThree);
-	}
-
-	function rewardModeStepOne() {
-		$('#share')
-			.off('click')
-			.on('click', function () {
-				playStupidSound();
-				powerShare(rewardModeStepTwo);
-				appearDogeWord(_standard_phrases);
-			})
-			.one('click', function () {
-				_share_clicked_timer = clearInterval(_share_clicked_timer);
-				_flags.blink = false;
-				$('#main').fadeChangeText('GO FAST!');
-			});
-
-		$('#next').hide();
-
-		if (!$.browser.mobile) {
-			$('#share').addClass('pulsate');
-		}
-
-		$('#main').fadeChangeText(_reward_mode.button_text);
-
-		var counter = 0;
-		var attntimer = setInterval(function () {
-			if (counter % 2) {
-				document.title = random_choice(_reward_mode.titles);
-			}
-			else {
-				document.title = _reward_mode.original_title;
-			}
-
-			counter++;
-		}, 1500);
-
-
-		setTimeout(function () {
-			$(document).one('mouseover', function () {
-				clearInterval(attntimer);
-				document.title = _reward_mode.original_title;
-			});
-		}, 1000);
 	}
 
 	var powermodetimer = null;
