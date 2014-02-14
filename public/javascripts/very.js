@@ -110,6 +110,19 @@
 					$(this).removeClass('pulsate');
 				}
 			});
+
+		var realtimecounter = $('<div>')
+			.text("0")
+			.addClass('real-time-counter');
+
+		$('body').append(realtimecounter);
+
+		realtimecounter
+			.fadeIn(200)
+			.queue(function () {
+				$(this).alwaysCenterIn(window, { direction: "horizontal" });
+				$(this).dequeue();
+			});
 	}
 
 	function rewardModeStepThree () {
@@ -143,6 +156,7 @@
 
 		$('#social').show();
 		$('#next').show();
+		$('.real-time-counter').hide();
 
 		$.blotIn.off(function () {
 			_flags.vibrate = true;
@@ -220,6 +234,9 @@
 		}
 
 		powersharecounter++;
+		$('.real-time-counter')
+			.text(powersharecounter)
+			.centerIn(window, { direction: 'horizontal' });
 		
 		if (powersharecounter === 25
 			|| (powersharecounter > 25

@@ -327,7 +327,8 @@ a {
 }
 
 #rewardtext,
-#youshared {
+#youshared,
+.real-time-counter {
 	display: none;
 	position: absolute;
 	bottom: 8%;
@@ -340,6 +341,11 @@ a {
 	font-size: 1.25em;
 	text-align: center;
 	line-height: 2.7ex;
+}
+
+.real-time-counter {
+	bottom: 12%;
+	font-size: 0.9em;
 }
 
 #youshared {
