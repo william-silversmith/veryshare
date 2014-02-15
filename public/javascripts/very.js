@@ -167,10 +167,10 @@
 			$.post('/1.0/reward-seen');
 		});
 
-		var timestr = (powersharecounter === 1) ? ' time' : ' times';
+		var timestr = ' tiem(s)';
 
 		$('#youshared')
-			.centerIn(window, { direction: 'horizontal' })
+			.alwaysCenterIn(window, { direction: 'horizontal' })
 			.fadeIn(200, function () {
 				$(this).centerIn(window, { direction: 'horizontal' });
 			})
@@ -234,8 +234,20 @@
 		}
 
 		powersharecounter++;
+
+		var fontsize = 0.9 + (powersharecounter / 25);
+		fontsize = cutoff(fontsize, 0.9, 2.5);
+
+		var countercolor = ColorUtils.interpolate({
+			start: ColorUtils.hexToRGB("#BF1600"),
+			end: ColorUtils.hexToRGB("#00FFB8"),
+			percent: (powersharecounter / 25 * 100),
+		});
+
 		$('.real-time-counter')
 			.text(powersharecounter)
+			.css('font-size', fontsize + "em")
+			.css('color', ColorUtils.rgbToHex(countercolor))
 			.centerIn(window, { direction: 'horizontal' });
 		
 		if (powersharecounter === 25
@@ -492,6 +504,10 @@
 		}
 	}
 
+	function cutoff (value, low, high) {
+		return Math.max(Math.min(value, high), low);
+	}
+
 	function random_choice (array) {
 		var index = random_integer(array.length);
 		return array[index];
@@ -499,6 +515,14 @@
 
 	function random_integer (max) {
 		return Math.floor(Math.random() * max);
+	}
+
+	function round (value, lower, upper) {
+		if (Math.abs(upper - value) > Math.abs(value - lower)) {
+			return lower;
+		}
+
+		return upper;
 	}
 
 	function range (from, to, incr) {
@@ -518,8 +542,14 @@
 			.addClass('dogeitem')
 			.text(random_choice(phrases));
 
-		var h = Math.floor($(window).innerHeight() * Math.random());
-		var w = Math.floor($(window).innerWidth() * Math.random());
+		var win_h = $(window).innerHeight();
+		var win_w = $(window).innerWidth()
+
+		var h = Math.floor(win_h * Math.random());
+		var w = Math.floor(win_w * Math.random());
+
+		h = cutoff(h, win_h * 0.1, win_h * 0.85);
+		w = cutoff(w, win_w * 0.1, win_w * 0.75);
 
 		item.css('top', h).css('left', w);
 

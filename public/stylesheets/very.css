@@ -311,6 +311,25 @@ body {
 	color: #fc1d00;
 }
 
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-device-pixel-ratio: 3/2), 
+only screen and (min-device-pixel-ratio: 1.5) {
+  
+  	#next,
+  	#again {
+  		font-size: 0.7em;
+  	}
+  	#next {
+  		bottom: 22%;
+  	}
+  	#again {
+  		top: 22%;
+  	}
+}
+
+
 a {
 	font-family: 'Roboto', sans-serif;
 	font-weight: lighter;
@@ -356,10 +375,25 @@ a {
 #rewardtext {
 	top: 5%;
 	height: 50px;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .heart {
 	font-family: serif;
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-device-pixel-ratio: 3/2), 
+only screen and (min-device-pixel-ratio: 1.5) {
+  
+  	#rewardtext,
+  	#youshared {
+  		font-size: 1em;
+  		line-height: 3.25ex;
+  	}
 }
 
 /* Animations */
