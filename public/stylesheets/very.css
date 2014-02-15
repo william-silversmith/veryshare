@@ -300,6 +300,16 @@ body {
 	letter-spacing: 2px;
 }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-device-pixel-ratio: 3/2), 
+only screen and (min-device-pixel-ratio: 1.5) {
+    
+	body #again, #next  {
+		font-size: 0.7em;
+	}
+}
+
 #again {
 	top: 20%;
 	height: 20px;
@@ -340,6 +350,17 @@ a {
 	font-size: 1.25em;
 	text-align: center;
 	line-height: 2.7ex;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-o-device-pixel-ratio: 3/2), 
+only screen and (min-device-pixel-ratio: 1.5) {
+    
+	body #rewardtext, #youshared  {
+		font-size: 1em;
+		line-height: 3.25ex;
+	}
 }
 
 #youshared {
