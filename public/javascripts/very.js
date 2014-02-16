@@ -292,7 +292,7 @@
 			$.post('/1.0/power-share', { powershares: powersharecounter });
 
 			if (fn) {
-				//fn();
+				fn();
 			}
 		}, 1500);
 	}

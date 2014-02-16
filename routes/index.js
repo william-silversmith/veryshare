@@ -86,9 +86,6 @@ exports.index = function (req, res) {
 		var image = utils.random_choice(dogeimages);
 		var key = image.replace(/\.(jpe?g|png)$/i, '').toLowerCase();
 
-		console.log(image);
-		console.log(key);
-
 		visits = parseInt(visits, 10);
 		res.render('index', { 
 			host: HOST,
@@ -96,7 +93,7 @@ exports.index = function (req, res) {
 			wow: wow,
 			you_are: (visits + STATE.base).toFixed(0),
 			doge_img_src: "/images/doge/" + image,
-			doge_img_words: dogeimagewords[key],
+			doge_img_words: dogeimagewords[key].words,
 		});
 	});
 
