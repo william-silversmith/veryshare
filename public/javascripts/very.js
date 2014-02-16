@@ -174,7 +174,7 @@
 			.click(function () {
 				shareOnSelectedNetwork({
 					title: "Wow!!! POWERSHARE.",
-					description: "I POWERSHARED " + powersharecounter + timestr +  " on Very Share! Think you can beat me?",
+					description: "I POWERSHARED " + powersharecounter + timestr +  " on Very Share! Think you can beat me? http://veryshare.us",
 					media: "/images/veryshare.png",
 				}) 
 			});
