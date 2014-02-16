@@ -145,10 +145,6 @@
 			})
 			.centerIn();
 
-		if (powerstate === 'sun') {
-			$('#share').addClass('sun');
-		}
-
 		$('#main')
 			.text(_original_text)
 			.centerIn()
@@ -226,7 +222,6 @@
 	var powermodetimer = null;
 	var powermode = false;
 	var powersharecounter = 0;
-	var powerstate = 'green';
 
 	function powerShare (fn) {
 		if (powermodetimer) {
@@ -249,23 +244,29 @@
 			.css('font-size', fontsize + "em")
 			.css('color', ColorUtils.rgbToHex(countercolor))
 			.centerIn(window, { direction: 'horizontal' });
-		
-		if (powersharecounter === 25
-			|| (powersharecounter > 25
-				&& (powersharecounter - 25) % 40 === 0)) {
 
-			if (powerstate === 'green') {
-				$('#share')
-					.removeClass('green red sun')
-					.cssAnimation('fadeToSun', 'sun');
-				powerstate = 'sun';
-			}
-			else {
-				$('#share')
-					.removeClass('sun red green')
-					.cssAnimation('sunToGreen', 'green');
-				powerstate = 'green';
-			}
+		if (powersharecounter === 25
+			&& !$.browser.mobile) {
+
+			// This is to compute a circular orbit 
+			// based on finding the relative center of the page from the
+			// number
+
+			var reorbit = function () {
+				var cy = $(window).innerHeight() / 2;
+				var dy = parseInt($('.real-time-counter').css('bottom').replace('px', ''), 10);
+				var total = cy - dy - $('.real-time-counter').outerHeight(false);
+
+				$('.real-time-counter')
+					.css('-webkit-transform-origin', '50% -' + total + 'px')
+					.css('transform-origin', '50% -' + total + 'px');
+			};
+
+			$('.real-time-counter').addClass('orbit');
+			reorbit();
+			$(window).on('resize', function () {
+				reorbit();
+			});	
 		}
 
 		if (!powermode) {
@@ -291,7 +292,7 @@
 			$.post('/1.0/power-share', { powershares: powersharecounter });
 
 			if (fn) {
-				fn();
+				//fn();
 			}
 		}, 1500);
 	}

@@ -292,7 +292,7 @@ body {
 	color: #bf1600;
 
 	position: absolute;
-	bottom: 20%;
+	bottom: 19%;
 	text-align: center;
 	cursor: pointer;
 
@@ -301,7 +301,7 @@ body {
 }
 
 #again {
-	top: 20%;
+	top: 19%;
 	height: 20px;
 	cursor: pointer;
 }
@@ -310,7 +310,6 @@ body {
 #next:hover {
 	color: #fc1d00;
 }
-
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 only screen and (min--moz-device-pixel-ratio: 1.5),
@@ -569,6 +568,33 @@ only screen and (min-device-pixel-ratio: 1.5) {
 		border-color: #1F7F27;
 		background-color: #17B83E;
 		box-shadow: 0 0 0 transparent;
+	}
+}
+
+.orbit {
+	-webkit-animation-name: orbit;
+	animation-name: orbit;
+
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+
+	-webkit-animation-duration: 5000s;
+	animation-duration: 5000s;
+
+	-webkit-transition-timing-function: linear;
+	transition-timing-function: linear;
+
+	transform-origin: 0 -180px;
+	-webkit-transform-origin: 0 -180px;
+}
+
+@-webkit-keyframes orbit {
+	100% {
+		transform: rotateZ(-3600000deg);
+		-webkit-transform: rotateZ(-360000deg); /* Safari and Chrome */
 	}
 }
 
