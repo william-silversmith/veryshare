@@ -141,7 +141,11 @@
 					$('#share').addClass('pulsate');
 				}
 
-				shareOnSelectedNetwork();
+				shareOnSelectedNetwork({
+					title: "Many share. Such love.",
+					description: "Such WOW! There's so much sharing going on at http://veryshare.us",
+					media: "/images/veryshare.png",
+				});
 			})
 			.centerIn();
 
