@@ -592,8 +592,14 @@ only screen and (min-device-pixel-ratio: 1.5) {
 
 @-webkit-keyframes orbit {
 	100% {
-		transform: rotateZ(-3600000deg);
 		-webkit-transform: rotateZ(-360000deg); /* Safari and Chrome */
+		transform: rotateZ(-3600000deg);
+	}
+}
+@keyframes orbit {
+	100% {
+		-webkit-transform: rotateZ(-360000deg); /* Safari and Chrome */
+		transform: rotateZ(-3600000deg);
 	}
 }
 
