@@ -609,6 +609,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	top: 0px; /* Really determined in the js */
 	left: 0px;
 
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 100%;
 }
@@ -622,6 +623,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 	width: 1px;
 	height: 1px;
 
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 100%;
 }
