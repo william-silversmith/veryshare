@@ -13,7 +13,13 @@ var app = express();
 var utils = require('./server/utils.js');
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+
+var PORT = 3000;
+if (process.env.APPENV === 'PRODUCTION') {
+	PORT = 80;
+}
+
+app.set('port', PORT);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.compress());
