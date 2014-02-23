@@ -7,3 +7,10 @@ echo $COPY
 cd $VERYPATH
 rsync -rvz $COPY veryshare1:veryshare
 
+VERYJS="$VERYPATH/public/javascripts"
+
+cat "$VERYJS/centerIn.js" "$VERYJS/ColorUtils.js" "$VERYJS/blot.js" "$VERYJS/very.js" \
+	| yuicompressor --type js -o "$VERYJS/very.min.js";
+
+scp "$VERYJS/very.min.js" veryshare1:veryshare/public/javascripts/
+
