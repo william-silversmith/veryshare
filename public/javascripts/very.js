@@ -64,6 +64,10 @@
 		$('#youshared').alwaysCenterIn(window, {
 			direction: 'horizontal',
 		});
+
+		if ($.browser.mobile) {
+			document.body.setAttribute("orient", "profile");
+		}
 	});
 
 	function configureAudio () {
