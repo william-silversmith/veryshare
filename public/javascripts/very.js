@@ -302,7 +302,7 @@
 			if (fn) {
 				fn();
 			}
-		}, 1500);
+		}, 3000);
 	}
 
 	function shareOnSelectedNetwork (args) {
