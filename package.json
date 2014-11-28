@@ -6,8 +6,36 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.7",
-    "ejs": "*",
-    "stylus": "*"
-  }
+    "express": "^4.10.4",
+    "redis": "^0.12.1",
+    "hiredis": "^0.1.17",
+    "ejs": "^1.0.0",
+    "stylus": "^0.49.3",
+    "compression": "^1.2.1",
+    "serve-favicon": "^2.1.7",
+    "serve-static": "^1.7.1",
+    "morgan": "^1.5.0",
+    "body-parser": "^1.9.3",
+    "method-override": "^2.3.0"
+  },
+  "description": "veryshare =========",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/william-silversmith/veryshare.git"
+  },
+  "keywords": [
+    "very",
+    "share",
+    "doge",
+    "wow",
+    "amaze"
+  ],
+  "author": "William Silversmith, Alex Norton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/william-silversmith/veryshare/issues"
+  },
+  "homepage": "https://github.com/william-silversmith/veryshare"
 }
