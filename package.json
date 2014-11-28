@@ -16,7 +16,9 @@
     "serve-static": "^1.7.1",
     "morgan": "^1.5.0",
     "body-parser": "^1.9.3",
-    "method-override": "^2.3.0"
+    "method-override": "^2.3.0",
+    "sax": "^0.6.1",
+    "debug": "^2.1.0"
   },
   "description": "veryshare =========",
   "main": "app.js",
@@ -25,7 +27,8 @@
     "grunt": "^0.4.5",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-concat": "^0.5.0"
+    "grunt-contrib-concat": "^0.5.0",
+    "upstarter": "^0.2.6"
   },
   "repository": {
     "type": "git",
