@@ -20,10 +20,7 @@ var utils = require('./server/utils.js');
 
 // all environments
 
-var PORT = 3000;
-if (process.env.APPENV === 'PRODUCTION') {
-	PORT = 80;
-}
+var PORT = process.env.PORT || 3000;
 
 app.set('port', PORT);
 app.set('views', path.join(__dirname, 'views'));
