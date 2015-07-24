@@ -1047,7 +1047,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 			clip_id = clip_id.toFixed(0);
 
-			var clip = new Audio("/audio/veryshare-" + clip_id + ".wav");
+			var clip = new Audio("/audio/veryshare-" + clip_id + ".ogg");
 			clip.preload = true;
 
 			// Fix for apple not preloading
