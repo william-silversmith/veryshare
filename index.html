@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Very Share</title>
+
+  <link rel="shortcut icon" sizes="16x16" href="public/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" sizes="32x32" href="public/images/favicon32x32.png" type="image/png">
+  <link rel="shortcut icon" sizes="64x64" href="public/images/favicon64x64.png" type="image/png">
+
+  <meta name="description" content="Such wonder! Such share! Very share. Connect with each other through the act of sharing. What can the power of sharing reveal?" />
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" value="summary">
+  <meta name="twitter:url" content="http://veryshare.us">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Very Share" />
+  <meta property="og:site_name" content="Very Share"/>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://veryshare.us/" />
+  <meta property="og:image" content="https://veryshare.us/images/veryshare.png" />
+  <meta property="og:description" content="Such wonder! Such share! Very share. Connect with each other through the act of sharing. What can the power of sharing reveal?" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+  <link rel="stylesheet" href="public/stylesheets/very.css" />
+  <link href='//fonts.googleapis.com/css?family=Oleo+Script:400,700' rel='stylesheet' type='text/css' />
+  <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+
+  <script type="text/javascript" src="public/javascripts/centerIn.js" defer></script>
+  <script type="text/javascript" src="public/javascripts/blot.js" defer></script>
+  <script type="text/javascript" src="public/javascripts/ColorUtils.js" defer></script>
+  <script type="text/javascript" src="public/javascripts/very.js" defer></script>
+
+  <script>
+      var wows = [
+        'wow',
+        'such',
+        'very',
+        'much',
+        'so'
+      ];
+
+      function random_choice (array) {
+        var index = random_integer(array.length);
+        return array[index];
+      }
+
+      function random_integer (max) {
+        return Math.floor(Math.random() * max);
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        $('#wow_word').text(random_choice(wows));
+
+        var you_are = Math.floor((new Date() / 1000));
+        $('#visitor_num').text( you_are );
+      });
+
+      var HOST = "veryshare.us";
+
+      var DOGE_IMAGES = [ 
+        'apple-doge.jpg',
+        'coffee-doge.jpg',
+        'napolean-doge.jpg',
+        'starry-night-doge.jpg',
+        'banana-doge.jpg',
+        'geologic-doge.jpg',
+        'nyan-doge.jpg',
+        'sun-doge.jpg',
+        'bruce-booty-doge.jpg',
+        'hal-doge.jpg',
+        'sandra-gravity-doge.jpg',
+        'cake-doge.jpg',
+        'hipster-doge.jpg',
+        'scared-doge.jpg',
+        'cest-ne-un-doge.jpg',
+        'mission-patch-doge.png',
+        'springsteen-doge.jpg' 
+      ];
+
+      var DOGE_IMAGE_SRC = "public/images/doge/" + random_choice(DOGE_IMAGES);
+      var DOGE_IMAGE_WORDS = {
+          "banana-doge": {
+            "words": [
+              "wow", "do want", "such health", "so yum", 
+              "banana doge", "so phallus", "good stomic", 
+              "amaze", "such yellow"
+            ]
+          },
+          "cake-doge": {
+            "words": [
+              "wow", "good filled", "such delishus", 
+              "much cake", "do want", "so cream", "amaze",
+              "such sponge"
+            ]
+          },
+          "coffee-doge": {
+            "words": [
+              "wow", "such mocha", "many microfoam",
+              "so warm", "much latte", "so arte",
+              "don't spoon me", "such whip", "many flavr",
+              "2 prtty 2 drink"
+            ]
+          },
+          "geologic-doge": {
+            "words": [
+              "many pressure", "so heavy", "such hard",
+              "millions of years", "wow", "much balance"
+            ]
+          },
+          "hipster-doge": {
+            "words": [
+              "no 1 gets me", "nice", "omg hi", "so vintige",
+              "so hip", "cool", "such class", "nice scraf",
+              "no filtr", "wow", "indie levl=100"
+            ]
+          },
+          "scared-doge": {
+            "words": [
+              "wow", "What r u doing", "so scare", "Concern",
+              "-a-p-e-", "keep ur hands away from me"
+            ]
+          },
+
+          "napolean-doge": {
+            "words": [
+              "wow", "such historic", "much victory", 
+              "such battle", "no elba. so scare.", 
+              "no russia. so scare.", "such short",
+              "such france", "much riding", "much steed",
+              "such amaze", "many codes", "much revolution",
+              "such empire", "much uphill... no faster!"
+            ]
+          },
+          "springsteen-doge": {
+            "words": [
+              "wow", "such USA", "much born", "so boss",
+              "bring teh thunder", "such icon"
+            ]
+          },
+          "bruce-booty-doge": {
+            "words": [
+              "wow", "such boss", "much denim", "many stripes",
+              "so lucky", "so america", "so working man", "so jersey",
+              "very plain", "riding the wave"
+            ]
+          },
+          "pearl-earring-doge": {
+            "words": [
+              "wow", "so pretty", "such pearl", "missing green",
+              "doge in 1665?!", "master of light", "such intimate",
+              "much dutch"
+            ]
+          },
+          "caesar-doge": {
+            "words": [
+              "wow", "alea iacta est", "such empire", "no republic 4 u",
+              "many gauls", "et tu clickaroo?", "no sharing", "much power",
+              "such bust", "such arte", "many campaigns", "<3 rome"
+            ]
+          },
+          "jfk-doge": {
+            "words": [
+              "wow", "such president", "to the moon!", "very cuba", "such accent",
+              "many sixties", "such celebrity", "much controversy", "such missle",
+              "many crisis", "much freedom", "many zombies", 
+              "much airport", "very sharing", "many kennedys"
+            ]
+          },
+          "pulp-fiction-doge": {
+            "words": [
+              "wow", "so royale", "such gimp", "many golden", "tik tok"
+            ]
+          },
+          "american-gothic-doge": {
+            "words": [
+              "wow", "such farming", "such america", "much arte",
+              "much fork", "much parody"
+            ]
+          },
+          "van-doge": {
+            "words": [
+              "wow", "few ears", "many colors",
+              "such selfie", "much instagram", "such 19th century"
+            ]
+          },
+          "statue-of-liberty-doge": {
+            "words": [
+              "wow", "many freedom", "such huddling", "very yearning",
+              "i <3 ny", "much copper", "very france"
+            ]
+          },
+          "starry-night-doge": {
+            "words": [
+              "wow", "many stars", "star doge", 
+              "such melt", "already impressed", "such serenity",
+              "such asylum", "much movement", "such wonder", 
+              "many doge", "-i-c-u-"
+            ]
+          },
+          "princess-leia-doge": {},
+          "indiana-doge": {},
+          "minion-doge": {},
+          "jackie-chan-doge": {},
+          "tiger-doge": {
+            "words": [
+              "wow", "rawr", "many stripes", "such fierce"
+            ]
+          },
+          "lion-doge": {
+            "words": [
+              "wow", "rawr", "many lands", "much pride",
+              "many mane", "such power", "die squirrel"
+            ]
+          },
+          "beauty-and-the-beast-doge": {},
+          "sistine-chapel-doge": {
+            "words": [
+              "wow", "WOW", "WOW!", "very divine",
+              "such arte", "many thunderbolt", "so michelangelo",
+              "so 16th century"
+            ]
+          },
+          "last-supper-doge": {},
+          "persistence-of-memory-doge": {
+            "words": [
+              "wow", "tiem", "forevr", "much waiting",
+              "such persistence", "many memories", "very distortion",
+              "tik tok", "so melting"
+            ]
+          },
+          "mission-patch-doge": {
+            "words": [
+              "wow", "to the moon!", "much launch", "such honor",
+              "many missions", "such space", "so weightless", "such apogee",
+              "many sunrise", 
+              "1 small step 4 a doge", "1 giant leap 4 dogekind", "Kaelakov / deviantART"
+            ]
+          },
+          "sandra-gravity-doge": {
+            "words": [
+              "wow", "to the moon!", "starry eyes",
+              "much space", "much glare", "so alone",
+              "much cold", "such vacuum", "very metaphor",
+              "few space stations", "much tumbling"
+            ]
+          },
+          "hal-doge": {
+            "words": [
+              "wow", "sorry dave", "many pods",
+              "so space", "much mars", "so sleep",
+              "such glow", "very command", "very homicide",
+              "very advanced", "such future", "many 9000",
+              "very kubrick", "very alone", "so trippy",
+              "watching you"
+            ]
+          },
+          "tauntaun-doge": {
+            "words": [
+              "wow", "much hoth", "very cold", "so scret",
+              "such rebel", "much cause", "so forceful",
+              "smell good on inside!", "many snew", "many probe",
+              "such speed", "such scout", "such tauntaun",
+              "many trap"
+            ]
+          },
+          "lincoln-memorial-doge": {
+            "words": [
+              "wow", "such voice", "many plays", "much amending",
+              "so commanding", "many debating", "so northern",
+              "such emancipating"
+            ]
+          },
+          "terminator-doge": {
+            "words": [
+              "wow", "ill b back", "such assassin", "ur terminated",
+              "many nukes", "tiem travel"
+            ]
+          },
+          "apple-doge": {
+            "words": [
+              "wow", "do want", "such health", "such metaphor",
+              "so yum", "so hidden", "so apple", "such object permenence"
+            ]
+          },
+          "nyan-doge": {
+            "words": [
+              "wow", "nyan"
+            ]
+          },
+          "cest-ne-un-doge": {
+            "words": [
+              "wow", "so not a pipe", "so simple", "such forward",
+              "very direct"
+            ]
+          },
+          "sun-doge": {
+            "words": [
+              "wow", "so sun", "many fun", "very alarms", "much morning", 
+              "so cereal", "such awake", "many sunshine", "very fusion"
+            ]
+          },
+          "spock-doge": {},
+          "yoda-doge": {},
+          "aladdin-carpet-doge": {}
+        };
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="youare"><span id="wow_word"></span><p id="visitor_num"></p></div>
+    <div id="share" class="untouchable">
+      <span id="main" class="untouchable">VeryShare</span>
+      <div id ="social" class="untouchable">
+        <img class="untouchable" src="public/images/facebook.png" alt="Facebook" />
+      </div>
+    </div>
+
+    <div id="next">next social</div>
+  </div>
+
+  <a target="_blank" id="submit-vocals" href="/share-your-voice">Such Voice!</a>
+
+  <div id="rewardtext"></div>
+  <div id="again">share again!</div>
+  <div id="youshared"></div>
+</body>
+</html>

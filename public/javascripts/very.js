@@ -80,7 +80,7 @@
 
 			clip_id = clip_id.toFixed(0);
 
-			var clip = new Audio("/audio/veryshare-" + clip_id + ".ogg");
+			var clip = new Audio("public/audio/veryshare-" + clip_id + ".ogg");
 			clip.preload = true;
 
 			// Fix for apple not preloading
@@ -168,7 +168,7 @@
 
 			$('#share').removeClass('fadeToSun fadeToGreen green')
 
-			$.post('/1.0/reward-seen');
+			// $.post('/1.0/reward-seen');
 		});
 
 		var timestr = ' tiem(s)';
@@ -297,7 +297,7 @@
 				$('#share').addClass('pulsate');
 			}
 
-			$.post('/1.0/power-share', { powershares: powersharecounter });
+			// $.post('/1.0/power-share', { powershares: powersharecounter });
 
 			if (fn) {
 				fn();
@@ -319,7 +319,7 @@
 
 		var payload = {};
 		payload[socialnetwork.data] = true;
-		$.post('/1.0/shared', payload);
+		// $.post('/1.0/shared', payload);
 
 		// Too dangerous for prototype phase
 
@@ -332,7 +332,7 @@
 		var next_network = _social_networks[_social_index];
 
 		$('#social img')
-			.attr('src', '/images/' + next_network.img)
+			.attr('src', 'public/images/' + next_network.img)
 			.attr('title', next_network.name)
 			.attr('alt', next_network.name);
 
